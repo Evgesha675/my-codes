@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Document</title>
+</head>
+<body>
+<h1>Вариант 5</h1><p>
+<h2>Задание 1</h2><p>
+<h3>Найти сумму первых двадцати элементов последовательности X, X/3, X/5, ... .  </h1><p>
+    <input type="text" class="in" onfocus="this.value=''" value="Введите x">
+
+<button>Найти</button><p>
+<div type="text" class="out"><p>
+<script>
+
+document.querySelector('button').onclick=c;
+
+function c(){
+let x=document.querySelector('.in').value;
+var l=0, r = 1;
+
+for(var i=0; i<20; i++){
+    l += x/r;
+    r+=2;
+}
+
+document.querySelector('.out').innerHTML=l;
+}
+
+</script>
+</body>
+</html>

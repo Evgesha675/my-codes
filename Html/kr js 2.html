@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Document</title>
+</head>
+<body>
+<h1>Вариант 5</h1><p>
+<h2>Задание 2</h2><p>
+<h3>5.	Квадратная матрица М состоит из 6 строк, 6 столбцов. Вы¬честь из каждого ее э	лемента сумму элементов, расположенных на главной диагонали.</h1><p>
+<h3>начальная матрица:
+    [1, -2, 3, 4, 5, -6],
+[-9, -8, 7, 6, -5, 2],
+[5, -4, -3, 2, -1, 9],
+[6, -7, 8, -9, 1, -2],
+[1, -9, 2, -8, -3, 10],
+[1, 2, 3, 6, 5, 8]]
+</h3>
+<button>Пуск</button><p>
+<div type="text" class="out"><p>
+<script>
+
+document.querySelector('button').onclick=c;
+
+function c(){
+
+let lol=[]
+let counter = 0
+let arr=[
+[1, -2, 3, 4, 5, -6],
+[-9, -8, 7, 6, -5, 2],
+[5, -4, -3, 2, -1, 9],
+[6, -7, 8, -9, 1, -2],
+[1, -9, 2, -8, -3, 10],
+[1, 2, 3, 6, 5, 8]];
+for( var i =0; i<6;i++){
+    for ( var j = 0; j<6; j++){
+        if ( i == j){
+            counter+= arr[i][j]
+            
+        }
+    }
+}
+for( var i =0; i<6;i++){
+    lol+="<br>"
+
+    for ( var j = 0; j<6; j++){
+        lol += "  "
+        lol+=arr[i][j]+counter;
+    }
+    }
+
+document.querySelector('.out').innerHTML = lol;
+}
+
+</script>
+</body>
+</html>

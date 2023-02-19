@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Document</title>
+</head>
+<body>
+<h1>Вариант 5</h1><p>
+<h2>Задание 3. Выполнить задание по вариантам. n - чётное и больше либо равно 4.</h2><p>
+<input type="text" class="in" onfocus="this.value=''" value="ведите число"><p>
+<button>Пуск</button><p>
+<div type="text" class="out"><p>
+<script>
+
+document.querySelector('button').onclick=c;
+
+function getRandomInt(min, max){
+let gri = Math.floor(Math.random() * (max - min)) + min;
+return gri;
+}
+
+function getArray(n){
+let arr=[];
+for(var i=0; i<n; i++){
+let arrSmall=[];
+for(var j=0; j<n; j++){
+arrSmall.push(getRandomInt(1, 10));
+}
+arr.push(arrSmall);
+}
+return arr;
+}
+
+function getResultArray(a){
+let phe=[];
+let l=a.length;
+for(var i=0; i<l; i++){
+for(var j=0; j<l; j++){
+phe.push(a[i][j]);
+}}
+console.log('phe: '+ phe);
+phe.sort();
+console.log('phe: '+ phe);
+
+let k=0;
+let arr=[];
+for(var i=0; i<l; i++){
+let arrSmall=[];
+for(var j=0; j<l; j++){
+arrSmall.push(0);
+}
+arr.push(arrSmall);
+}
+for(var i=0; i<l; i++){
+
+if(k==0){
+for(var j=l-1; j>=0; j--){
+arr[j][i]=phe[0];
+phe.shift();
+}
+k=1;
+}
+
+else if(k==1){
+for(var j=0; j<l; j++){
+arr[j][i]=phe[0];
+phe.shift();
+}
+k=0;
+}
+}
+return arr;
+}
+
+
+function c(){
+let x=document.querySelector('.in').value;
+let mat=getArray(x);
+console.log('mat: '+ mat);
+let matSort=getResultArray(mat);
+console.log('matSort: '+ matSort);
+let n=matSort.length;
+
+console.log('MASSIV');
+for(var i=0; i<n; i++){
+console.log(matSort[i][0], matSort[i][1], matSort[i][2], matSort[i][3]);
+}
+
+
+document.querySelector('.out').innerHTML = matSort;
+}
+
+</script>
+</body>
+</html>
