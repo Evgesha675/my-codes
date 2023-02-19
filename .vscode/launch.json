@@ -1,0 +1,517 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch Calculator",
+      "request": "launch",
+      "mainClass": "my_codes.Calculator",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Calculator",
+      "request": "launch",
+      "mainClass": "Calculator",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Main",
+      "request": "launch",
+      "mainClass": "pack.Main",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch ChickenVoice",
+      "request": "launch",
+      "mainClass": "ChickenVoice",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch ThreadAlphabet",
+      "request": "launch",
+      "mainClass": "ThreadAlphabet",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch fac",
+      "request": "launch",
+      "mainClass": "fac",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Main",
+      "request": "launch",
+      "mainClass": "Taylor.Main",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch main",
+      "request": "launch",
+      "mainClass": "data.main",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch perebor",
+      "request": "launch",
+      "mainClass": "perebor",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch serkv",
+      "request": "launch",
+      "mainClass": "serkv",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch serkv",
+      "request": "launch",
+      "mainClass": "com.company.serkv",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Launch monte",
+      "request": "launch",
+      "mainClass": "monte"
+    },
+    {
+      "type": "java",
+      "name": "Launch monte",
+      "request": "launch",
+      "mainClass": "com.company.monte"
+    },
+    {
+      "type": "java",
+      "name": "Launch monte",
+      "request": "launch",
+      "mainClass": "monte",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch kv",
+      "request": "launch",
+      "mainClass": "kv",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch psevdo",
+      "request": "launch",
+      "mainClass": "psevdo",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch psevdo",
+      "request": "launch",
+      "mainClass": "java.psevdo",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Main",
+      "request": "launch",
+      "mainClass": "java.Main",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch b2_2",
+      "request": "launch",
+      "mainClass": "java.b2_2",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch spiral",
+      "request": "launch",
+      "mainClass": "spiral",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch JavaApplication1",
+      "request": "launch",
+      "mainClass": "JavaApplication1",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch AbstractActionTest",
+      "request": "launch",
+      "mainClass": "AbstractActionTest",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch dicik",
+      "request": "launch",
+      "mainClass": "dicik",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Kostki",
+      "request": "launch",
+      "mainClass": "Kostki",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch DiceGame",
+      "request": "launch",
+      "mainClass": "DiceGame",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch PokerDice",
+      "request": "launch",
+      "mainClass": "PokerDice",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Dice",
+      "request": "launch",
+      "mainClass": "Dice",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Main",
+      "request": "launch",
+      "mainClass": "Cubes.Main",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch mas",
+      "request": "launch",
+      "mainClass": "mas",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch lab2",
+      "request": "launch",
+      "mainClass": "lab2",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch sorted",
+      "request": "launch",
+      "mainClass": "sorted",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch BubbleSort",
+      "request": "launch",
+      "mainClass": "BubbleSort",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Ugadaika",
+      "request": "launch",
+      "mainClass": "Ugadaika",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch main",
+      "request": "launch",
+      "mainClass": "main",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "name": "Attach to Chrome",
+      "port": 9222,
+      "request": "attach",
+      "type": "pwa-chrome",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "(gdb) Запустить",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}\\${fileBasenameNoExtension}.cpp",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "/path/to/gdb",
+      "setupCommands": [
+        {
+          "description": "Включить автоматическое форматирование для gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Задать для варианта приложения дизассемблирования значение Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
+      "name": "(Windows) Запустить",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "Введите имя программы, например: ${workspaceFolder}/a.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "console": "externalTerminal"
+    },
+    {
+      "type": "java",
+      "name": "Launch ConverterCRUTOI",
+      "request": "launch",
+      "mainClass": "ConverterCRUTOI",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Sym_counter",
+      "request": "launch",
+      "mainClass": "Sym_counter",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Valide_solution",
+      "request": "launch",
+      "mainClass": "Valide_solution",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch ValidParentheses",
+      "request": "launch",
+      "mainClass": "ValidParentheses",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Animals",
+      "request": "launch",
+      "mainClass": "ferma.Animals",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Curr_conv",
+      "request": "launch",
+      "mainClass": "Curr_conv",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch MainWin",
+      "request": "launch",
+      "mainClass": "MainWin",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Converter",
+      "request": "launch",
+      "mainClass": "Converter",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch GridLayoutDemo",
+      "request": "launch",
+      "mainClass": "GridLayoutDemo",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch CardLayoutTest",
+      "request": "launch",
+      "mainClass": "CardLayoutTest",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch CurrencyConverter",
+      "request": "launch",
+      "mainClass": "CurrencyConverter",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch TestFrame",
+      "request": "launch",
+      "mainClass": "TestFrame",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Conv",
+      "request": "launch",
+      "mainClass": "Conv",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Test",
+      "request": "launch",
+      "mainClass": "Test",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch ValideString",
+      "request": "launch",
+      "mainClass": "ValideString",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Fibbonachi",
+      "request": "launch",
+      "mainClass": "Fibbonachi",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch bin",
+      "request": "launch",
+      "mainClass": "bin",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Vozrast",
+      "request": "launch",
+      "mainClass": "Vozrast",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch SringChar",
+      "request": "launch",
+      "mainClass": "SringChar",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Massive",
+      "request": "launch",
+      "mainClass": "Massive",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch VisYear",
+      "request": "launch",
+      "mainClass": "VisYear",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Hello_World",
+      "request": "launch",
+      "mainClass": "Hello_World",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Hello_World",
+      "request": "launch",
+      "mainClass": "java_лабы.Hello_World",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch replace",
+      "request": "launch",
+      "mainClass": "replace",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch IntToBinary",
+      "request": "launch",
+      "mainClass": "IntToBinary",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Dualzahl",
+      "request": "launch",
+      "mainClass": "Dualzahl",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "type": "java",
+      "name": "Launch Main",
+      "request": "launch",
+      "mainClass": "Main",
+      "projectName": "Code_6b8b6d5d"
+    },
+    {
+      "name": "g++.exe - Build and debug active file",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "C:\\D-drive-31515\\MinGW\\mingw64\\bin\\gdb.exe",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "C/C++: g++.exe build active file"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [
+        ""
+      ],
+      "stopAtEntry": false,
+      "cwd": "c:/Users/1111/Code",
+      "environment": [],
+      "program": "c:/Users/1111/Code/build/Release/outRelease",
+      "internalConsoleOptions": "openOnSessionStart",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "externalConsole": false,
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}
