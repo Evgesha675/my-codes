@@ -3,6 +3,48 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Launch MatrixCalculator",
+      "request": "launch",
+      "mainClass": "java_course.MatrixCalculator",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "Launch MatrixSort",
+      "request": "launch",
+      "mainClass": "java_course.MatrixSort",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "Launch AverageNum",
+      "request": "launch",
+      "mainClass": "java_course.AverageNum",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "Launch StringArraySearch",
+      "request": "launch",
+      "mainClass": "java_course.StringArraySearch",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "Launch StringSearch",
+      "request": "launch",
+      "mainClass": "java_course.StringSearch",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "Launch Calculator",
+      "request": "launch",
+      "mainClass": "java_course.Calculator",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
       "name": "Launch Calculator",
       "request": "launch",
       "mainClass": "Calculator",

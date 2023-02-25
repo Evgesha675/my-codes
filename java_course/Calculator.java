@@ -1,3 +1,4 @@
+package java_course;
 //hello
 
 import java.util.*;
