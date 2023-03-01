@@ -19,7 +19,8 @@ public class MatrixCalculator {
                 matrix1[i][j] = scanner.nextDouble();
             }
         }
-
+        //например это исправление 
+        
         // Ввод размеров второй матрицы
         System.out.println("Введите размеры второй матрицы (строки столбцы):");
         int m2 = scanner.nextInt();
