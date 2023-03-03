@@ -3,6 +3,62 @@
   "configurations": [
     {
       "type": "java",
+      "name": "LevenshteinDistance",
+      "request": "launch",
+      "mainClass": "java_course.LevenshteinDistance",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "ArithmeticValidation",
+      "request": "launch",
+      "mainClass": "java_course.ArithmeticValidation",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "EmailValidation",
+      "request": "launch",
+      "mainClass": "java_course.EmailValidation",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "ReplacePunctuation",
+      "request": "launch",
+      "mainClass": "java_course.ReplacePunctuation",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "Regular1",
+      "request": "launch",
+      "mainClass": "java_course.Regular1",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "Palindromes",
+      "request": "launch",
+      "mainClass": "java_course.Palindromes",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "SortString",
+      "request": "launch",
+      "mainClass": "java_course.SortString",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "Compare2str",
+      "request": "launch",
+      "mainClass": "java_course.Compare2str",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
       "name": "Launch MatrixCalculator",
       "request": "launch",
       "mainClass": "java_course.MatrixCalculator",
