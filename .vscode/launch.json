@@ -3,6 +3,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main1",
+      "request": "launch",
+      "mainClass": "java_course.Ellipse_peregruz.Main1",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "java_course.Ellipse_peregruz.Main",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "java_course.Ellipse.Main",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
       "name": "LevenshteinDistance",
       "request": "launch",
       "mainClass": "java_course.LevenshteinDistance",
