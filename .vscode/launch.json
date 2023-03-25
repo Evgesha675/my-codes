@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "java_course.entity.Main",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "FirebirdExample",
+      "request": "launch",
+      "mainClass": "database.FirebirdExample",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
       "name": "Main1",
       "request": "launch",
       "mainClass": "java_course.Ellipse_peregruz.Main1",

@@ -34,7 +34,5 @@ public class Main1 {
             e.printStackTrace();
         }
 
-        // освобождаем ресурсы
-        graphics.dispose();
     }
 }
