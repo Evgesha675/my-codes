@@ -1,75 +1,75 @@
-Sure, here's an example implementation of the Car class in Java, with fields for characteristics and a method for turning on the headlights, as well as overloaded constructors and methods to demonstrate the creation and use of a car instance twice:
+// package java_course;
 
-public class Car {
+// public class Car {
 
-    private String make;
+//     private String make;
 
-    private String model;
+//     private String model;
 
-    private int year;
+//     private int year;
 
-    private boolean headlightsOn;
-
-    
-
-    public Car(String make, String model, int year) {
-
-        this.make = make;
-
-        this.model = model;
-
-        this.year = year;
-
-    }
+//     private boolean headlightsOn;
 
     
 
-    public Car(String make, String model, int year, boolean headlightsOn) {
+//     public Car(String make, String model, int year) {
 
-        this.make = make;
+//         this.make = make;
 
-        this.model = model;
+//         this.model = model;
 
-        this.year = year;
+//         this.year = year;
 
-        this.headlightsOn = headlightsOn;
-
-    }
+//     }
 
     
 
-    public void turnOnHeadlights() {
+//     public Car(String make, String model, int year, boolean headlightsOn) {
 
-        this.headlightsOn = true;
+//         this.make = make;
 
-        System.out.println("Headlights are now turned on.");
+//         this.model = model;
 
-    }
+//         this.year = year;
 
-    
+//         this.headlightsOn = headlightsOn;
 
-    public void turnOnHeadlights(int brightnessLevel) {
-
-        this.headlightsOn = true;
-
-        System.out.println("Headlights are now turned on to brightness level " + brightnessLevel + ".");
-
-    }
+//     }
 
     
 
-    public static void main(String[] args) {
+//     public void turnOnHeadlights() {
 
-        Car car1 = new Car("Honda", "Civic", 2022, false);
+//         this.headlightsOn = true;
 
-        car1.turnOnHeadlights();
+//         System.out.println("Headlights are now turned on.");
+
+//     }
+
+    
+
+//     public void turnOnHeadlights(int brightnessLevel) {
+
+//         this.headlightsOn = true;
+
+//         System.out.println("Headlights are now turned on to brightness level " + brightnessLevel + ".");
+
+//     }
+
+    
+
+//     public static void main(String[] args) {
+
+//         Car car1 = new Car("Honda", "Civic", 2022, false);
+
+//         car1.turnOnHeadlights();
 
         
 
-        Car car2 = new Car("Toyota", "Corolla", 2022);
+//         Car car2 = new Car("Toyota", "Corolla", 2022);
 
-        car2.turnOnHeadlights(5);
+//         car2.turnOnHeadlights(5);
 
-    }
+//     }
 
-}
+// }

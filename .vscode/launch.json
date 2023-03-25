@@ -5,6 +5,20 @@
       "type": "java",
       "name": "Main",
       "request": "launch",
+      "mainClass": "java_course.Ellipse2.Main",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "java_course.Shape.Main",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
       "mainClass": "java_course.entity.Main",
       "projectName": "my-codes_4f279c25"
     },
