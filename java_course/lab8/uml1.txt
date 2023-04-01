@@ -1,0 +1,45 @@
+@startuml
+class Person {
+    +String name
+    +String address
+    +String phone
+}
+
+class Student {
+    -String studentID
+    -Zachetka zachetka
+    -List<Course> courses
+}
+
+class Teacher {
+    -String teacherID
+    -List<Course> courses
+}
+
+class Zachetka {
+    +String zachetkaNumber
+    +List<Course> courses
+}
+
+class Course {
+    +String courseName
+    +String courseCode
+}
+
+class Faculty {
+    +String facultyName
+    +List<Course> courses
+    +List<Student> students
+    +List<Teacher> teachers
+}
+
+Person <|-- Student
+Person <|-- Teacher
+Student *-- Zachetka
+Student *-- Course
+Teacher *-- Course
+Zachetka *-- Course
+Faculty *-- Course
+Faculty *-- Student
+Faculty *-- Teacher
+@enduml

@@ -1,0 +1,102 @@
+@startuml
+
+class Person {
+    -id: int
+    -name: String
+    -dateOfBirth: Date
+    +Person(name: String, dateOfBirth: Date)
+    +getId(): int
+    +getName(): String
+    +getDateOfBirth(): Date
+}
+
+class Student {
+    -id: int
+    -courses: List<Course>
+    -transcript: Transcript
+    +Student(name: String, dateOfBirth: Date)
+    +addCourse(course: Course)
+    +removeCourse(course: Course)
+    +getTranscript(): Transcript
+}
+
+class Teacher {
+    -id: int
+    -courses: List<Course>
+    +Teacher(name: String, dateOfBirth: Date)
+    +addCourse(course: Course)
+    +removeCourse(course: Course)
+}
+
+class Course {
+    -id: int
+    -name: String
+    -credits: int
+    -teacher: Teacher
+    +Course(name: String, credits: int, teacher: Teacher)
+    +getName(): String
+    +getCredits(): int
+    +getTeacher(): Teacher
+}
+
+class Transcript {
+    -id: int
+    -courses: Map<Course, Grade>
+    +Transcript()
+    +addCourseGrade(course: Course, grade: Grade)
+    +getCourseGrade(course: Course): Grade
+    +getGPA(): double
+}
+
+enum Grade {
+    A, B, C, D, F
+}
+
+class Faculty {
+    -id: int
+    -name: String
+    -courses: List<Course>
+    -students: List<Student>
+    -teachers: List<Teacher>
+    +Faculty(name: String)
+    +addCourse(course: Course)
+    +removeCourse(course: Course)
+    +addStudent(student: Student)
+    +removeStudent(student: Student)
+    +addTeacher(teacher: Teacher)
+    +removeTeacher(teacher: Teacher)
+}
+
+Person --> Student
+Person --> Teacher
+Student "1" --> "1" Transcript
+Student "1" *-- "*" Course
+Teacher "1" *-- "*" Course
+Course "1" --> "1" Teacher
+Transcript "1" --> "*" Course
+Faculty "*" *-- "*" Student
+Faculty "*" *-- "*" Teacher
+Faculty "*" *-- "*" Course
+
+@enduml
+
+
+
+    Поля классов помечены знаком -, методы - +.
+    Уровни доступа к полям и методам не указаны, но их можно определить в соответствии с требованиями системы.
+    Отношение между Student и Transcript обозначено как 1-1, так как каждый студент имеет только одну зачетную книжку, а каждая зачетная книжка относится только к одному студенту.
+    Отношение между Student и Course обозначено как 1-*, так как каждый студент может быть зарегистрирован на несколько курсов, а каждый курс может иметь несколько студентов.
+    Отношение между Teacher и Course обозначено как 1-*, так как каждый преподаватель может
+
+
+    Это код на языке PlantUML для создания диаграммы классов, 
+    описывающей взаимосвязи между сущностями в учебной системе. 
+    Каждый класс имеет свои поля (например, у класса Person есть id, name и dateOfBirth)
+     и методы (например, у класса Student есть addCourse и getTranscript). 
+     Каждая стрелка между классами описывает отношение между ними
+      (например, Person --> Student означает, что класс Person имеет отношение
+       "является" с классом Student). Кардинальности отношений задаются числами 
+       на стрелках, например "1" --> "1" означает, что каждый объект одного класса
+        имеет ровно один объект другого класса, а "*" -- "" означает, что 
+        каждый объект одного класса может иметь ноль или много объектов 
+        другого класса и наоборот.
