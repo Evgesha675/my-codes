@@ -130,6 +130,14 @@ class Rectangle extends Shape implements Scalable, Rotatable {
 
         this.angle = angle;
     }
+    
+    public static Ellipse2D.Double createInscribedEllipse(int x, int y, int width, int height) {
+        double centerX = x + width / 2.0;
+        double centerY = y + height / 2.0;
+        double semiMajorAxis = width / 2.0;
+        double semiMinorAxis = height / 2.0;
+        return new Ellipse2D.Double(centerX - semiMajorAxis, centerY - semiMinorAxis, 2.0 * semiMajorAxis, 2.0 * semiMinorAxis);
+    }
 }
 
 class Ellipse extends Shape implements Scalable, Rotatable {
@@ -177,6 +185,9 @@ class Ellipse extends Shape implements Scalable, Rotatable {
 
         this.angle = angle;
     }
+    public static Rectangle getBoundingBox(int x, int y, int width, int height) {
+        return new Rectangle(x, y, width, height, Color.BLACK);
+    }
 }
 
 public class Main {
@@ -212,6 +223,9 @@ public class Main {
         ellipse3.scale(0.5);
         ellipse3.rotate(Math.PI / 2);
         ellipse3.draw(g2d);
+
+        Ellipse ellipse = new Ellipse(50, 50, 100, 80, Color.RED);
+        Ellipse.getBoundingBox(ellipse.x, ellipse.y, ellipse.width, ellipse.height);
         
 
 
