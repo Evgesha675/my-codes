@@ -3,6 +3,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "SerializationExample",
+      "request": "launch",
+      "mainClass": "java_course.lab9.Seria.SerializationExample",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "ExtractWordsFromFile",
+      "request": "launch",
+      "mainClass": "java_course.lab9.ExtractWordsFromFile",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "SearchSubstringInFile",
+      "request": "launch",
+      "mainClass": "java_course.lab9.SearchSubstringInFile",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
       "name": "Main",
       "request": "launch",
       "mainClass": "java_course.Matrix.Main",
