@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "database.Main",
+      "projectName": "my-codes-1_55a109bd"
+    },
+    {
+      "type": "java",
       "name": "Regular1",
       "request": "launch",
       "mainClass": "java_course.Regular1",

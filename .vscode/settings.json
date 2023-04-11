@@ -3,6 +3,13 @@
     "java_лабы",
     ""
   ],
+
+  
+    "java.project.referencedLibraries": [
+         "C:/lib/lib/jna-5.12.1.jar"
+    ],
+ 
+
   "C_Cpp_Runner.cCompilerPath": "C:/D-drive-31515/MinGW/mingw64/bin/gcc.exe",
   "C_Cpp_Runner.cppCompilerPath": "C:/D-drive-31515/MinGW/mingw64/bin/g++.exe",
   "C_Cpp_Runner.debuggerPath": "gdb",
@@ -38,3 +45,4 @@
   },
   "java.debug.settings.onBuildFailureProceed": true
 }
+
