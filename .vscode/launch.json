@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Regular1",
+      "request": "launch",
+      "mainClass": "java_course.Regular1",
+      "projectName": "my-codes-1_55a109bd"
+    },
+    {
+      "type": "java",
       "name": "SerializationExample",
       "request": "launch",
       "mainClass": "java_course.lab9.Seria.SerializationExample",
