@@ -6,6 +6,13 @@
       "name": "MainFrame",
       "request": "launch",
       "mainClass": "database.MainFrame",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
+      "name": "MainFrame",
+      "request": "launch",
+      "mainClass": "database.MainFrame",
       "projectName": "my-codes-1_55a109bd"
     },
     {
