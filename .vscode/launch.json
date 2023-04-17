@@ -1,33 +1,38 @@
 {
   "version": "0.2.0",
   "configurations": [
+    
+      
+
+    
     {
       "type": "java",
-      "name": "PipeManager",
+      "name": "Stack",
       "request": "launch",
-      "mainClass": "databasenew.PipeManager",
-      "projectName": "my-codes-1_55a109bd"
+      "mainClass": "java_course.lab10.stack2.Stack",
+      "projectName": "my-codes_4f279c25"
     },
     {
       "type": "java",
       "name": "Main",
       "request": "launch",
-      "mainClass": "databasenew.Main",
-      "projectName": "my-codes-1_55a109bd"
+      "mainClass": "java_course.lab10.Main",
+      "projectName": "my-codes_4f279c25"
     },
     {
       "type": "java",
-      "name": "MainFrame2",
+      "name": "Stack",
       "request": "launch",
-      "mainClass": "database.MainFrame2",
-      "projectName": "my-codes-1_55a109bd"
+      "mainClass": "java_course.lab10.Stack",
+      "projectName": "my-codes_4f279c25"
     },
     {
       "type": "java",
-      "name": "PipeManager",
+      "name": "MainFrame",
       "request": "launch",
-      "mainClass": "database.PipeManager",
-      "projectName": "my-codes-1_55a109bd"
+      "mainClass": "database.MainFrame",
+      "projectName": "my-codes_4f279c25"
+
     },
     {
       "type": "java",
