@@ -3,6 +3,34 @@
   "configurations": [
     {
       "type": "java",
+      "name": "PipeManager",
+      "request": "launch",
+      "mainClass": "databasenew.PipeManager",
+      "projectName": "my-codes-1_55a109bd"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "databasenew.Main",
+      "projectName": "my-codes-1_55a109bd"
+    },
+    {
+      "type": "java",
+      "name": "MainFrame2",
+      "request": "launch",
+      "mainClass": "database.MainFrame2",
+      "projectName": "my-codes-1_55a109bd"
+    },
+    {
+      "type": "java",
+      "name": "PipeManager",
+      "request": "launch",
+      "mainClass": "database.PipeManager",
+      "projectName": "my-codes-1_55a109bd"
+    },
+    {
+      "type": "java",
       "name": "MainFrame",
       "request": "launch",
       "mainClass": "database.MainFrame",
