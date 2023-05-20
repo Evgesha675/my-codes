@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "SimpleTextEditor",
+      "request": "launch",
+      "mainClass": "java_course.lab13.SimpleTextEditor",
+      "projectName": "my-codes_4f279c25"
+    },
+    {
+      "type": "java",
       "name": "Stack",
       "request": "launch",
       "mainClass": "java_course.lab10.stack2.Stack",
@@ -28,7 +35,6 @@
       "request": "launch",
       "mainClass": "database.MainFrame",
       "projectName": "my-codes_4f279c25"
-
     },
     {
       "type": "java",
