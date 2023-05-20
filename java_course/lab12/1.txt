@@ -1,0 +1,72 @@
+import java.util.concurrent.Semaphore;
+
+class Microphone {
+    private final Semaphore semaphore;
+    private boolean isAvailable;
+
+    public Microphone(int availablePermits) {
+        semaphore = new Semaphore(availablePermits, true);
+        isAvailable = true;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void take() throws InterruptedException {
+        semaphore.acquire();
+        isAvailable = false;
+    }
+
+    public void release() {
+        semaphore.release();
+        isAvailable = true;
+    }
+}
+
+class Speaker implements Runnable {
+    private final String name;
+    private final Microphone microphone;
+
+    public Speaker(String name, Microphone microphone) {
+        this.name = name;
+        this.microphone = microphone;
+    }
+
+    @Override
+    public void run() {
+        try {
+            microphone.take();
+            System.out.printf("%s is speaking\n", name);
+            Thread.sleep(2000);
+            System.out.printf("%s has finished speaking\n", name);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            microphone.release();
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int numMicrophones = 2;
+        int numSpeakers = 4;
+
+        Microphone[] microphones = new Microphone[numMicrophones];
+        for (int i = 0; i < numMicrophones; i++) {
+            microphones[i] = new Microphone(1);
+        }
+
+        Thread[] speakers = new Thread[numSpeakers];
+        for (int i = 0; i < numSpeakers; i++) {
+            Microphone microphone = microphones[i % numMicrophones];
+            Speaker speaker = new Speaker("Speaker " + i, microphone);
+            speakers[i] = new Thread(speaker);
+        }
+
+        for (Thread speaker : speakers) {
+            speaker.start();
+        }
+    }
+}
