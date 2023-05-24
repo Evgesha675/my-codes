@@ -1,0 +1,17 @@
+plugins {
+    id 'application'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation 'org.openjfx:javafx-controls:16'
+    implementation 'org.openjfx:javafx-fxml:16'
+}
+
+application {
+    mainModule = 'your.main.module' // Замените 'your.main.module' на имя вашего главного модуля
+    mainClass = 'your.main.class' // Замените 'your.main.class' на имя вашего главного класса
+}

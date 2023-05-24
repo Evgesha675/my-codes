@@ -1,10 +1,42 @@
 {
   "version": "0.2.0",
   "configurations": [
-    
-      
-
-    
+    {
+      "type": "java",
+      "name": "DNASequenceGenerator",
+      "request": "launch",
+      "mainClass": "java_course.lab12.DNASequenceGenerator",
+      "projectName": "my-codes-1_55a109bd"
+    },
+    {
+      "type": "java",
+      "name": "JavaFX App",
+      "request": "launch",
+      "vmArgs": "--module-path /path/to/javafx/lib --add-modules javafx.controls,javafx.fxml",
+      "mainClass": "java_course.lab14.FormattedTextEditor",
+      "projectName": "my-codes-1_55a109bd"
+    },
+    {
+      "type": "java",
+      "name": "HtmlTextEditor",
+      "request": "launch",
+      "mainClass": "java_course.lab13.HtmlTextEditor",
+      "projectName": "my-codes-1_55a109bd"
+    },
+    {
+      "type": "java",
+      "name": "TextEditor",
+      "request": "launch",
+      "mainClass": "java_course.lab13.TextEditor",
+      "projectName": "my-codes-1_55a109bd"
+    },
+    {
+      "type": "java",
+      "name": "SimpleTextEditor",
+      "request": "launch",
+      "mainClass": "java_course.lab13.SimpleTextEditor",
+      "projectName": "my-codes-1_55a109bd"
+    },
     {
       "type": "java",
       "name": "SimpleTextEditor",
