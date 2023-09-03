@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "MatrixCalculator",
+      "request": "launch",
+      "mainClass": "java_course.another.MatrixCalculator",
+      "projectName": "my-codes_63f99825"
+    },
+    {
+      "type": "java",
+      "name": "MainFrame",
+      "request": "launch",
+      "mainClass": "database.MainFrame",
+      "projectName": "my-codes_63f99825"
+    },
+    {
+      "type": "java",
       "name": "DNASequenceGenerator",
       "request": "launch",
       "mainClass": "java_course.lab12.DNASequenceGenerator",

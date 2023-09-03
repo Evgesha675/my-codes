@@ -1,4 +1,4 @@
-package java_course;
+package java_course.another;
 public class Soundex {
     public static void main(String[] args) {
         String word1 = "Hello";

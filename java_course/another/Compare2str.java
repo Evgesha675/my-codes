@@ -1,4 +1,4 @@
-package java_course;
+package java_course.another;
 
 public class Compare2str {
     public static void main(String... args) {

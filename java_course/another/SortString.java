@@ -1,5 +1,4 @@
-package java_course;
-
+package java_course.another;
 
 public class SortString{
     public static void main(String[] args) {

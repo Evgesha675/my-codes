@@ -1,4 +1,4 @@
-package java_course;
+package java_course.another;
 
 public class Regular1 {
     public static void main(String[] args) {
