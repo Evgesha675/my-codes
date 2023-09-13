@@ -1,1 +1,1 @@
-print(1)
+print('''dsadsa'sasa' dsads''')
