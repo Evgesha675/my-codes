@@ -3,6 +3,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "BracketValidation",
+      "request": "launch",
+      "mainClass": "BracketValidation",
+      "projectName": "my-codes_63f99825"
+    },
+    {
+      "type": "java",
+      "name": "sa",
+      "request": "launch",
+      "mainClass": "sa",
+      "projectName": "my-codes_63f99825"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "Main",
+      "projectName": "my-codes_63f99825"
+    },
+    {
+      "type": "java",
       "name": "MatrixCalculator",
       "request": "launch",
       "mainClass": "java_course.another.MatrixCalculator",
