@@ -2,7 +2,7 @@ import telebot
 from telebot import types
 
 # Инициализация бота
-bot=telebot.TeleBot('6378551854:AAGBtcq3xKjIduZym771lElsImrlJ08L64c')
+bot=telebot.TeleBot('')
 
 # Создаем клавиатуру с 10 кнопками
 markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
