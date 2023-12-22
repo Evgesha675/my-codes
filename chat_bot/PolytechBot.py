@@ -88,9 +88,9 @@ def ask_question(message, email):
 # Функция для отправки обратной связи на почту
 def send_feedback(email, question):
     # Замените следующие параметры своими данными
-    sender_email = "your_email@gmail.com"
-    sender_password = "your_email_password"
-    receiver_email = "feedback@example.com"
+    sender_email = "tetenkinevgenij@gmail.com"
+    sender_password = "gsgt vuei xxqr kmer"
+    receiver_email = "anatolevicanatolij560@gmail.com"
 
     # Формируем сообщение
     msg = MIMEMultipart()
