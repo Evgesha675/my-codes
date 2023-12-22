@@ -1,2 +1,1 @@
-def fuc()
-    a = 0;
+print()
