@@ -8,7 +8,6 @@ import smtplib
 import os
 import base64
 
-
 conn = sqlite3.connect('faqBot.db', check_same_thread=False)
 cursor = conn.cursor()
 
@@ -65,9 +64,13 @@ def add_admin(user_id):
     conn.commit()
 
 def is_user_admin(user_id):
-    cursor.execute('SELECT is_admin FROM users WHERE id=?', (user_id,))
-    result = cursor.fetchone()
+    with conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT is_admin FROM users WHERE id=?', (user_id,))
+        result = cursor.fetchone()
     return result and result[0] == 1
+
+
 
 @bot.message_handler(commands=['start'])
 def start_handler(message):
