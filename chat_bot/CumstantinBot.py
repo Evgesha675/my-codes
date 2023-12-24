@@ -85,45 +85,56 @@ def start_handler(message):
     markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)  # Create a new markup instance
 
     if is_admin:
-        markup.add(telebot.types.KeyboardButton("showdb"))
-        markup.add(telebot.types.KeyboardButton("addadmin"))
-        markup.add(telebot.types.KeyboardButton("show_all_data"))
-        markup.add(telebot.types.KeyboardButton("redact_bd"))
-        bot.send_message(user_id, "Привет! Я ваш бот.", reply_markup=markup)
+        markup.add(telebot.types.KeyboardButton("Show usersDB"))
+        markup.add(telebot.types.KeyboardButton("Add admin"))
+        markup.add(telebot.types.KeyboardButton("Show qaDB"))
+        markup.add(telebot.types.KeyboardButton("Change qaDB"))
+        bot.send_message(user_id, "Welcome! \nHow can i help you?", reply_markup=markup)
     else:
         user_markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-        user_markup.add(telebot.types.KeyboardButton("make_document_request"))
-        user_markup.add(telebot.types.KeyboardButton("show_all_data"))
-        bot.send_message(user_id, "Привет! Я ваш бот.", reply_markup=user_markup)
+        user_markup.add(telebot.types.KeyboardButton("Make a request for document"))
+        user_markup.add(telebot.types.KeyboardButton("Show qaDB"))
+        bot.send_message(user_id, "Welcome! \nHow can i help you?", reply_markup=user_markup)
 
 
 
 
 
 # Команда /make_document_request
-@bot.message_handler(commands=['make_document_request'])
+@bot.message_handler(func=lambda message: message.text == 'Make a request for document')
 def make_document_request(message):
     user_id = message.from_user.id
     markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
 
     # Добавляем кнопки "Frequently asked questions" и "Another request"
-    markup.add(telebot.types.KeyboardButton("frequently_asked_questions"))
-    markup.add(telebot.types.KeyboardButton("weweanother_request"))
+    markup.add(telebot.types.KeyboardButton("Frequently asked requests"))
+    markup.add(telebot.types.KeyboardButton("Another request"))
+    markup.add(telebot.types.KeyboardButton("Cancel"))  # Добавляем кнопку "Cancel"
 
-    bot.send_message(user_id, "Выберите действие:", reply_markup=markup)
+    bot.send_message(user_id, "Choose option:", reply_markup=markup)
 
 # Команда /frequently_asked_questions
-@bot.message_handler(commands=['frequently_asked_questions'])
+@bot.message_handler(func=lambda message: message.text == 'Frequently asked requests')
 def frequently_asked_questions(message):
     user_id = message.from_user.id
-    bot.send_message(user_id, "Здесь будет текст часто задаваемых вопросов, когда они будут добавлены.")
+    bot.send_message(user_id, "No function yet")
 
-# Команда /another_request
-@bot.message_handler(commands=['another_request'])
+@bot.message_handler(func=lambda message: message.text == 'Another request')
 def another_request(message):
     user_id = message.from_user.id
-    bot.send_message(user_id, "Введите ваш вопрос:")
+    bot.send_message(user_id, "Write your request:")
     bot.register_next_step_handler(message, process_another_request)
+
+def process_another_request(message):
+    user_id = message.from_user.id
+    if message.text.lower() == 'cancel':
+        start_handler(message)
+    else:
+        question = message.text
+
+        # Задаем вопросы по email и телефону
+        bot.send_message(user_id, "Enter your email:")
+        bot.register_next_step_handler(message, process_email, question=question)
 
 # Функция для обработки дополнительного запроса
 def process_another_request(message):
@@ -131,7 +142,7 @@ def process_another_request(message):
     question = message.text
 
     # Задаем вопросы по email и телефону
-    bot.send_message(user_id, "Введите ваш email:")
+    bot.send_message(user_id, "Enter your email:")
     bot.register_next_step_handler(message, process_email, question=question)
 
 # Функция для обработки email
@@ -140,7 +151,7 @@ def process_email(message, question):
     email = message.text
 
     # Задаем вопросы по телефону
-    bot.send_message(user_id, "Введите ваш номер телефона:")
+    bot.send_message(user_id, "Enter your phone number:")
     bot.register_next_step_handler(message, process_phone, question=question, email=email)
 
 # Функция для обработки номера телефона
@@ -151,18 +162,18 @@ def process_phone(message, question, email):
     # Отправляем данные на почту деканата
     send_email_to_dean_office(question, email, phone)
 
-    bot.send_message(user_id, "Ваш запрос успешно отправлен.")
+    bot.send_message(user_id, "Your request has been sent successfully!")
 
 # Функция для отправки email на почту деканата
 def send_email_to_dean_office(question, email, phone):
     sender_email = "tetenkinevgenij@gmail.com"
     dean_office_email = "telegrambricks@gmail.com"
 
-    subject = "Новый запрос на документы"
-    body = f"Вопрос: {question}\nEmail: {email}\nТелефон: {phone}"
+    subject = "New request for documents"
+    body = f"Request: {question}\nEmail: {email}\nPhone number: {phone}"
 
     # Запрос пароля через input
-    sender_password = input("Введите пароль для {}:".format(sender_email))
+    sender_password = "hopa xszm xtmq ravh"
 
     # Отправка письма с использованием пароля
     yagmail.register(sender_email, sender_password)
@@ -170,44 +181,111 @@ def send_email_to_dean_office(question, email, phone):
     yag.send(to=dean_office_email, subject=subject, contents=body)
     yag.close()
 
-    print("Письмо успешно отправлено.")
+    print(f"Письмо ({question}) успешно отправлено.")
 
 
 
 
 
 
-@bot.message_handler(commands=['show_all_data'])
-def get_all_faq_data(message):
+# @bot.message_handler(func=lambda message: message.text == 'Show qaDB')
+# def get_all_faq_data(message):
+#     user_id = message.from_user.id
+#     print("Received message:", message.text)
+
+#     cursor.execute('''
+#         SELECT Topics.topic_name, Questions.question_text, Answers.answer_text
+#         FROM Topics
+#         LEFT JOIN Questions ON Topics.topic_id = Questions.topic_id
+#         LEFT JOIN Answers ON Questions.question_id = Answers.question_id
+#     ''')
+#     faq_data = cursor.fetchall()
+#     print("FAQ data:", faq_data)
+
+#     if not faq_data:
+#         bot.send_message(user_id, "No FAQ data available.")
+#     else:
+#         formatted_data = ""
+#         current_topic = None
+
+#         for row in faq_data:
+#             topic_name, question_text, answer_text = row
+#             if topic_name != current_topic:
+#                 formatted_data += f"\n\n*{topic_name}*"
+#                 current_topic = topic_name
+#             formatted_data += f"\n\n• {question_text}\n  - {answer_text}"
+
+#         bot.send_message(user_id, formatted_data, parse_mode="Markdown")
+
+
+# Команда /show_qaDB
+@bot.message_handler(func=lambda message: message.text.lower() == 'show qadb')
+def show_qaDB_handler(message):
     user_id = message.from_user.id
+    try:
+        cursor.execute('SELECT DISTINCT topic_name FROM Topics')
+        topics = cursor.fetchall()
 
-    cursor.execute('''
-        SELECT Topics.topic_name, Questions.question_text, Answers.answer_text
-        FROM Topics
-        LEFT JOIN Questions ON Topics.topic_id = Questions.topic_id
-        LEFT JOIN Answers ON Questions.question_id = Answers.question_id
-    ''')
-    faq_data = cursor.fetchall()
-    print("FAQ data:", faq_data)
+        markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+        for topic in topics:
+            markup.add(telebot.types.KeyboardButton(topic[0]))
+        markup.add(telebot.types.KeyboardButton("Cancel"))
 
-    if not faq_data:
-        bot.send_message(user_id, "No FAQ data available.")
-    else:
-        formatted_data = ""
-        current_topic = None
-
-        for row in faq_data:
-            topic_name, question_text, answer_text = row
-            if topic_name != current_topic:
-                formatted_data += f"\n\n*{topic_name}*"
-                current_topic = topic_name
-            formatted_data += f"\n\n• {question_text}\n  - {answer_text}"
-
-        bot.send_message(user_id, formatted_data, parse_mode="Markdown")
+        bot.send_message(user_id, "Select a topic:", reply_markup=markup)
+        bot.register_next_step_handler(message, process_user_topic_choice)
+    except Exception as e:
+        print(e)
+        bot.send_message(user_id, "An error occurred. Please try again.")
 
 
+def process_user_topic_choice(message):
+    user_id = message.from_user.id
+    try:
+        selected_topic_name = message.text
+        if selected_topic_name.lower() == 'cancel':
+            start_handler(message)
+            return
 
-@bot.message_handler(commands=['addadmin'])
+        cursor.execute('SELECT topic_id FROM Topics WHERE topic_name=?', (selected_topic_name,))
+        selected_topic_id = cursor.fetchone()[0]
+
+        cursor.execute('SELECT question_text FROM Questions WHERE topic_id=?', (selected_topic_id,))
+        questions = cursor.fetchall()
+
+        markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+        for question in questions:
+            markup.add(telebot.types.KeyboardButton(question[0]))
+        markup.add(telebot.types.KeyboardButton("Cancel"))
+
+        bot.send_message(user_id, "Select a question:", reply_markup=markup)
+        bot.register_next_step_handler(message, process_user_question_choice)
+    except Exception as e:
+        print(e)
+        bot.send_message(user_id, "Invalid input. Please select a valid topic.")
+
+def process_user_question_choice(message):
+    user_id = message.from_user.id
+    try:
+        selected_question_text = message.text
+        if selected_question_text.lower() == 'cancel':
+            show_qaDB_handler(message)
+            return
+
+        cursor.execute('SELECT answer_text FROM Answers WHERE question_id IN (SELECT question_id FROM Questions WHERE question_text=?)', (selected_question_text,))
+        answer = cursor.fetchone()[0]
+
+        bot.send_message(user_id, f"Question: {selected_question_text}\nAnswer: {answer}")
+
+        # Возвращаем пользователя в начальное меню
+        start_handler(message)
+    except Exception as e:
+        print(e)
+        bot.send_message(user_id, "Invalid input. Please select a valid question.")
+
+
+
+
+@bot.message_handler(func=lambda message: message.text == 'Add admin')
 def add_admin_handler(message):
     user_id = message.from_user.id
     if is_user_admin(user_id):
@@ -222,12 +300,12 @@ def add_admin_handler(message):
             if message.text == "Отмена":
                 start_handler(message)
             else:
-                bot.send_message(user_id, "Выберите пользователя, чтобы сделать его администратором:", reply_markup=markup)
+                bot.send_message(user_id, "Select a user to make him an administrator:", reply_markup=markup)
                 bot.register_next_step_handler(message, process_admin_choice)
         else:
             bot.send_message(user_id, "Нет пользователей для добавления в администраторы.")
     else:
-        bot.send_message(user_id, "У вас нет прав для выполнения этой команды.")
+        bot.send_message(user_id, "You do not have permission to execute this command.")
 
 def get_non_admin_users():
     cursor.execute('SELECT id FROM users WHERE is_admin=0')
@@ -248,7 +326,7 @@ def process_admin_choice(message):
             bot.send_message(user_id, "Пожалуйста, выберите корректного пользователя.")
 
 
-@bot.message_handler(commands=['showdb'])
+@bot.message_handler(func=lambda message: message.text == 'Show usersDB')
 def show_db_handler(message):
     user_id = message.from_user.id
     if is_user_admin(user_id):
@@ -281,23 +359,33 @@ def generate_excel_file():
 
 
 # Command to request the Excel file for redaction
-@bot.message_handler(commands=['redact_bd'])
+@bot.message_handler(func=lambda message: message.text == 'Change qaDB')
 def redact_bd_handler(message):
     user_id = message.from_user.id
     if is_user_admin(user_id):
+        markup = telebot.types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
+        markup.add(telebot.types.KeyboardButton("Cancel"))
+        
         excel_data = generate_excel_file()
         if excel_data:
-            bot.send_document(user_id, excel_data, caption="Редактируйте файл и отправьте его обратно для обновления базы данных.")
+            bot.send_document(user_id, excel_data, caption="Редактируйте файл и отправьте его обратно для обновления базы данных.", reply_markup=markup)
             bot.register_next_step_handler(message, process_edited_excel_file)
         else:
             bot.send_message(user_id, "Нет данных для создания файла.")
     else:
         bot.send_message(user_id, "У вас нет прав для выполнения этой команды.")
 
+@bot.message_handler(func=lambda message: message.text == 'Cancel')
+def cancel_handler(message):
+    start_handler(message)
+
+
 
 def process_edited_excel_file(message):
     user_id = message.from_user.id
-    if message.document:
+    if message.text == 'Cancel':
+        start_handler(message)
+    elif message.document:
         file_id = message.document.file_id
         file_info = bot.get_file(file_id)
         file_data = bot.download_file(file_info.file_path)
@@ -308,6 +396,7 @@ def process_edited_excel_file(message):
         bot.send_message(user_id, "База данных успешно обновлена.")
     else:
         bot.send_message(user_id, "Пожалуйста, отправьте файл Excel для обновления базы данных.")
+
 
 # Function to update the database from the edited Excel file
 def update_database_from_excel(file_data):
