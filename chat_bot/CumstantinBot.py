@@ -51,6 +51,17 @@ cursor.execute('''
 
 conn.commit()
 
+# creating FAR
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS FrequentlyAskedRequests (
+        request_id INTEGER PRIMARY KEY,
+        request_text TEXT,
+        response_text TEXT
+    )
+''')
+conn.commit()
+
+
 TOKEN = '6378551854:AAGBtcq3xKjIduZym771lElsImrlJ08L64c'
 bot = telebot.TeleBot(TOKEN)
 markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
@@ -99,31 +110,39 @@ def start_handler(message):
 
 
 
-
 # Команда /make_document_request
 @bot.message_handler(func=lambda message: message.text == 'Make a request for document')
 def make_document_request(message):
     user_id = message.from_user.id
-    markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
 
-    # Добавляем кнопки "Frequently asked questions" и "Another request"
-    markup.add(telebot.types.KeyboardButton("Frequently asked requests"))
-    markup.add(telebot.types.KeyboardButton("Another request"))
-    markup.add(telebot.types.KeyboardButton("Cancel"))  # Добавляем кнопку "Cancel"
+    cursor.execute('SELECT request_text FROM FrequentlyAskedRequests')
+    far_data = cursor.fetchall()
 
-    bot.send_message(user_id, "Choose option:", reply_markup=markup)
+    if not far_data:
+        bot.send_message(user_id, "No frequently asked requests available.")
+    else:
+        markup = telebot.types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+        for row in far_data:
+            markup.add(telebot.types.KeyboardButton(row[0]))
 
-# Команда /frequently_asked_questions
-@bot.message_handler(func=lambda message: message.text == 'Frequently asked requests')
-def frequently_asked_questions(message):
+        markup.add(telebot.types.KeyboardButton("Another request"))
+        markup.add(telebot.types.KeyboardButton("Cancel"))
+        bot.send_message(user_id, "Choose a frequently asked request or select 'Another request':", reply_markup=markup)
+        bot.register_next_step_handler(message, process_selected_request_or_another)
+
+def process_selected_request_or_another(message):
     user_id = message.from_user.id
-    bot.send_message(user_id, "No function yet")
+    selected_option = message.text
 
-@bot.message_handler(func=lambda message: message.text == 'Another request')
-def another_request(message):
-    user_id = message.from_user.id
-    bot.send_message(user_id, "Write your request:")
-    bot.register_next_step_handler(message, process_another_request)
+    if selected_option.lower() == 'cancel':
+        start_handler(message)
+    elif selected_option.lower() == 'another request':
+        bot.send_message(user_id, "Write your request:")
+        bot.register_next_step_handler(message, process_another_request)
+    else:
+        # Здесь можно вставить код для отправки запроса на почту для выбранной опции FAR
+        bot.send_message(user_id, f"Your request '{selected_option}' has been received. Please enter your email:")
+        bot.register_next_step_handler(message, process_email, request=selected_option)
 
 def process_another_request(message):
     user_id = message.from_user.id
@@ -131,38 +150,30 @@ def process_another_request(message):
         start_handler(message)
     else:
         question = message.text
-
-        # Задаем вопросы по email и телефону
         bot.send_message(user_id, "Enter your email:")
-        bot.register_next_step_handler(message, process_email, question=question)
+        bot.register_next_step_handler(message, process_email, request=question)
 
-# Функция для обработки дополнительного запроса
-def process_another_request(message):
-    user_id = message.from_user.id
-    question = message.text
-
-    # Задаем вопросы по email и телефону
-    bot.send_message(user_id, "Enter your email:")
-    bot.register_next_step_handler(message, process_email, question=question)
-
-# Функция для обработки email
-def process_email(message, question):
+def process_email(message, request):
     user_id = message.from_user.id
     email = message.text
 
-    # Задаем вопросы по телефону
-    bot.send_message(user_id, "Enter your phone number:")
-    bot.register_next_step_handler(message, process_phone, question=question, email=email)
+    # Здесь можно добавить код для отправки email и запроса на почту
+    bot.send_message(user_id, "Please enter your phone number:")
+    bot.register_next_step_handler(message, process_phone, request=request, email=email)
 
-# Функция для обработки номера телефона
-def process_phone(message, question, email):
+def process_phone(message, request, email):
     user_id = message.from_user.id
     phone = message.text
 
     # Отправляем данные на почту деканата
-    send_email_to_dean_office(question, email, phone)
+    send_email_to_dean_office(request, email, phone)
 
-    bot.send_message(user_id, "Your request has been sent successfully!")
+    # Сообщаем пользователю о успешной отправке запроса
+    bot.send_message(user_id, f"Your request '{request}' with email '{email}' and phone number '{phone}'has been deleted xD Sasay lalka")
+
+    # Возвращаем пользователя в начальное меню
+    start_handler(message)
+
 
 # Функция для отправки email на почту деканата
 def send_email_to_dean_office(question, email, phone):
@@ -172,8 +183,8 @@ def send_email_to_dean_office(question, email, phone):
     subject = "New request for documents"
     body = f"Request: {question}\nEmail: {email}\nPhone number: {phone}"
 
-    # Запрос пароля через input
-    sender_password = "hopa xszm xtmq ravh"
+    #get pass (feauture)
+    sender_password = "here is a password "
 
     # Отправка письма с использованием пароля
     yagmail.register(sender_email, sender_password)
@@ -181,7 +192,7 @@ def send_email_to_dean_office(question, email, phone):
     yag.send(to=dean_office_email, subject=subject, contents=body)
     yag.close()
 
-    print(f"Письмо ({question}) успешно отправлено.")
+    print(f"Your request ({question}) ")
 
 
 
