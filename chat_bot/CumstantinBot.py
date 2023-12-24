@@ -90,7 +90,7 @@ def start_handler(message):
         user_markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         user_markup.add(telebot.types.KeyboardButton("/make_document_request"))
         user_markup.add(telebot.types.KeyboardButton("/show_all_data"))
-        bot.send_message(user_id, "Привет! Я ваш бот.", reply_markup=user_markup)
+        bot.send_message(user_id, "Welcome! \n How can i help you?", reply_markup=user_markup)
 
 
 
