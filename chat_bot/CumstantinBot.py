@@ -92,9 +92,9 @@ def start_handler(message):
         bot.send_message(user_id, "Привет! Я ваш бот.", reply_markup=markup)
     else:
         user_markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-        user_markup.add(telebot.types.KeyboardButton("/make_document_request"))
-        user_markup.add(telebot.types.KeyboardButton("/show_all_data"))
-        bot.send_message(user_id, "Welcome! \n How can i help you?", reply_markup=user_markup)
+        user_markup.add(telebot.types.KeyboardButton("make_document_request"))
+        user_markup.add(telebot.types.KeyboardButton("show_all_data"))
+        bot.send_message(user_id, "Привет! Я ваш бот.", reply_markup=user_markup)
 
 
 
@@ -108,7 +108,7 @@ def make_document_request(message):
 
     # Добавляем кнопки "Frequently asked questions" и "Another request"
     markup.add(telebot.types.KeyboardButton("frequently_asked_questions"))
-    markup.add(telebot.types.KeyboardButton("another_request"))
+    markup.add(telebot.types.KeyboardButton("weweanother_request"))
 
     bot.send_message(user_id, "Выберите действие:", reply_markup=markup)
 
