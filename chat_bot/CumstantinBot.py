@@ -7,6 +7,8 @@ import yagmail
 import smtplib
 import os
 import base64
+import keyring
+
 
 conn = sqlite3.connect('faqBot.db', check_same_thread=False)
 cursor = conn.cursor()
@@ -55,8 +57,10 @@ markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
 
 
 def add_user(user_id):
-    cursor.execute('INSERT OR IGNORE INTO users (id, is_admin) VALUES (?, 0)', (user_id,))
-    conn.commit()
+    with conn:
+        new_cursor = conn.cursor()
+        new_cursor.execute('INSERT OR IGNORE INTO users (id, is_admin) VALUES (?, 0)', (user_id,))
+
 
 
 def add_admin(user_id):
@@ -81,10 +85,10 @@ def start_handler(message):
     markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)  # Create a new markup instance
 
     if is_admin:
-        markup.add(telebot.types.KeyboardButton("/showdb"))
-        markup.add(telebot.types.KeyboardButton("/addadmin"))
-        markup.add(telebot.types.KeyboardButton("/show_all_data"))
-        markup.add(telebot.types.KeyboardButton("/redact_bd"))
+        markup.add(telebot.types.KeyboardButton("showdb"))
+        markup.add(telebot.types.KeyboardButton("addadmin"))
+        markup.add(telebot.types.KeyboardButton("show_all_data"))
+        markup.add(telebot.types.KeyboardButton("redact_bd"))
         bot.send_message(user_id, "Привет! Я ваш бот.", reply_markup=markup)
     else:
         user_markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
@@ -103,8 +107,8 @@ def make_document_request(message):
     markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
 
     # Добавляем кнопки "Frequently asked questions" и "Another request"
-    markup.add(telebot.types.KeyboardButton("/frequently_asked_questions"))
-    markup.add(telebot.types.KeyboardButton("/another_request"))
+    markup.add(telebot.types.KeyboardButton("frequently_asked_questions"))
+    markup.add(telebot.types.KeyboardButton("another_request"))
 
     bot.send_message(user_id, "Выберите действие:", reply_markup=markup)
 
