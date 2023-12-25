@@ -8,11 +8,13 @@ import smtplib
 import os
 import base64
 import keyring
+import logging
+import time
 
+logging.basicConfig(filename='bot.log', level=logging.ERROR)
 
-conn = sqlite3.connect('faqBot.db', check_same_thread=False)
-cursor = conn.cursor()
-
+with sqlite3.connect('faqBot.db', check_same_thread=False) as conn:
+    cursor = conn.cursor()
 # creating users_db
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS users (
@@ -62,7 +64,7 @@ cursor.execute('''
 conn.commit()
 
 
-TOKEN = '6378551854:AAGBtcq3xKjIduZym771lElsImrlJ08L64c'
+TOKEN = 'token'
 bot = telebot.TeleBot(TOKEN)
 markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
 
@@ -184,7 +186,7 @@ def send_email_to_dean_office(question, email, phone):
     body = f"Request: {question}\nEmail: {email}\nPhone number: {phone}"
 
     #get pass (feauture)
-    sender_password = "here is a password "
+    sender_password = "password"
 
     # Отправка письма с использованием пароля
     yagmail.register(sender_email, sender_password)
@@ -193,12 +195,6 @@ def send_email_to_dean_office(question, email, phone):
     yag.close()
 
     print(f"Your request ({question}) ")
-
-
-
-
-
-
 
 
 
@@ -426,4 +422,9 @@ def update_database_from_excel(file_data):
 
 
 # Start the bot
-bot.polling(none_stop=True)
+while True:
+    try:
+        bot.polling(none_stop=True)
+    except Exception as e:
+        logging.error(f"Ошибка опроса: {e}")
+        time.sleep(15)  #
