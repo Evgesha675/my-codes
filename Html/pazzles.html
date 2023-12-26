@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slicer</title>
+    <style>
+        #canvasContainer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #canvas {
+            border: 1px solid #000;
+        }
+
+        .imagePiece {
+            position: absolute;
+            cursor: grab;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="imageInput" accept="image/*">
+    <div id="canvasContainer">
+        <canvas id="canvas" width="450" height="300"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            const canvasContainer = document.getElementById('canvasContainer');
+            let imagePieces = [];
+
+            // Обработка выбора изображения
+            const imageInput = document.getElementById('imageInput');
+            imageInput.addEventListener('change', handleImage);
+
+            function handleImage(e) {
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+                    const img = new Image();
+                    img.onload = function () {
+                        imagePieces = sliceImage(img, 50, 50);
+                        drawImagePieces();
+                        addDraggableListeners();
+                    };
+                    img.src = event.target.result;
+                };
+
+                reader.readAsDataURL(e.target.files[0]);
+            }
+
+            // Разрезание изображения на куски
+            function sliceImage(image, pieceWidth, pieceHeight) {
+                const pieces = [];
+                for (let i = 0; i < 21; i++) {
+                    const canvasPiece = document.createElement('canvas');
+                    canvasPiece.width = pieceWidth;
+                    canvasPiece.height = pieceHeight;
+                    const ctxPiece = canvasPiece.getContext('2d');
+                    const x = Math.floor(Math.random() * (canvas.width - pieceWidth));
+                    const y = Math.floor(Math.random() * (canvas.height - pieceHeight));
+                    ctxPiece.drawImage(image, x, y, pieceWidth, pieceHeight, 0, 0, pieceWidth, pieceHeight);
+                    pieces.push({ x, y, canvas: canvasPiece });
+                }
+                return pieces;
+            }
+
+            // Отображение кусков изображения на холсте
+            function drawImagePieces() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                imagePieces.forEach(piece => {
+                    ctx.drawImage(piece.canvas, piece.x, piece.y);
+                });
+            }
+
+            // Добавление обработчиков для перемещения кусков
+            function addDraggableListeners() {
+                imagePieces.forEach(piece => {
+                    const pieceElement = document.createElement('div');
+                    pieceElement.classList.add('imagePiece');
+                    pieceElement.style.width = piece.canvas.width + 'px';
+                    pieceElement.style.height = piece.canvas.height + 'px';
+                    pieceElement.style.left = piece.x + 'px';
+                    pieceElement.style.top = piece.y + 'px';
+                    pieceElement.draggable = true;
+                    canvasContainer.appendChild(pieceElement);
+
+                    pieceElement.addEventListener('dragstart', (e) => {
+                        e.dataTransfer.setData('text/plain', ''); // for Firefox compatibility
+                        e.target.classList.add('dragging');
+                    });
+
+                    pieceElement.addEventListener('dragend', (e) => {
+                        e.target.classList.remove('dragging');
+                        const index = imagePieces.findIndex(p => p.canvas === piece.canvas);
+                        if (index !== -1) {
+                            const rect = canvas.getBoundingClientRect();
+                            imagePieces[index].x = e.clientX - rect.left - piece.canvas.width / 2;
+                            imagePieces[index].y = e.clientY - rect.top - piece.canvas.height / 2;
+                            drawImagePieces();
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
