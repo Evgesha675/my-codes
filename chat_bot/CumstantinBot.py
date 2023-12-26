@@ -188,41 +188,8 @@ def send_email_to_dean_office(question, email, phone):
 
 
 
-
-
-# @bot.message_handler(func=lambda message: message.text == 'Show qaDB')
-# def get_all_faq_data(message):
-#     user_id = message.from_user.id
-#     print("Received message:", message.text)
-
-#     cursor.execute('''
-#         SELECT Topics.topic_name, Questions.question_text, Answers.answer_text
-#         FROM Topics
-#         LEFT JOIN Questions ON Topics.topic_id = Questions.topic_id
-#         LEFT JOIN Answers ON Questions.question_id = Answers.question_id
-#     ''')
-#     faq_data = cursor.fetchall()
-#     print("FAQ data:", faq_data)
-
-#     if not faq_data:
-#         bot.send_message(user_id, "No FAQ data available.")
-#     else:
-#         formatted_data = ""
-#         current_topic = None
-
-#         for row in faq_data:
-#             topic_name, question_text, answer_text = row
-#             if topic_name != current_topic:
-#                 formatted_data += f"\n\n*{topic_name}*"
-#                 current_topic = topic_name
-#             formatted_data += f"\n\n• {question_text}\n  - {answer_text}"
-
-#         bot.send_message(user_id, formatted_data, parse_mode="Markdown")
-
-
-# Команда /show_qaDB
-@bot.message_handler(func=lambda message: message.text.lower() == 'show qadb')
-def show_qaDB_handler(message):
+@bot.message_handler(func=lambda message: message.text.lower() == 'show FaQ')
+def show_QA_handler(message):
     user_id = message.from_user.id
     try:
         cursor.execute('SELECT DISTINCT topic_name FROM Topics')
