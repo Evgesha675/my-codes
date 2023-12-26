@@ -100,13 +100,13 @@ def start_handler(message):
     if is_admin:
         markup.add(telebot.types.KeyboardButton("Show usersDB"))
         markup.add(telebot.types.KeyboardButton("Add admin"))
-        markup.add(telebot.types.KeyboardButton("Show qaDB"))
-        markup.add(telebot.types.KeyboardButton("Change qaDB"))
+        markup.add(telebot.types.KeyboardButton("Show QA"))
+        markup.add(telebot.types.KeyboardButton("Change QA"))
         bot.send_message(user_id, "How can i help you?", reply_markup=markup)
     else:
         user_markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         user_markup.add(telebot.types.KeyboardButton("Make a request for document"))
-        user_markup.add(telebot.types.KeyboardButton("Show qaDB"))
+        user_markup.add(telebot.types.KeyboardButton("Show QA"))
         bot.send_message(user_id, "How can i help you?", reply_markup=user_markup)
 
 
@@ -189,7 +189,7 @@ def send_email_to_dean_office(question, email, phone):
 
 
 @bot.message_handler(func=lambda message: message.text.lower() == 'show FaQ')
-def show_qaDB_handler(message):
+def show_QA_handler(message):
     user_id = message.from_user.id
     try:
         cursor.execute('SELECT DISTINCT topic_name FROM Topics')
@@ -237,7 +237,7 @@ def process_user_question_choice(message):
     try:
         selected_question_text = message.text
         if selected_question_text.lower() == 'Cancel':
-            show_qaDB_handler(message)
+            show_QA_handler(message)
             return
 
         cursor.execute('SELECT answer_text FROM Answers WHERE question_id IN (SELECT question_id FROM Questions WHERE question_text=?)', (selected_question_text,))
@@ -327,7 +327,7 @@ def generate_excel_file():
 
 
 # Command to request the Excel file for editing
-@bot.message_handler(func=lambda message: message.text == 'Change qaDB')
+@bot.message_handler(func=lambda message: message.text == 'Change QA')
 def redact_bd_handler(message):
     user_id = message.from_user.id
     if is_user_admin(user_id):
