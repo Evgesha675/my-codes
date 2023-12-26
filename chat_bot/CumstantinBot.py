@@ -64,7 +64,7 @@ cursor.execute('''
 conn.commit()
 
 
-TOKEN = 'token'
+TOKEN = '6378551854:AAGBtcq3xKjIduZym771lElsImrlJ08L64c'
 bot = telebot.TeleBot(TOKEN)
 markup = telebot.types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
 
@@ -132,11 +132,11 @@ def make_document_request(message):
 
 def process_selected_request_or_another(message):
     user_id = message.from_user.id
-    selected_option = message.text
+    selected_option = message.text.strip().lower()
 
-    if selected_option.lower() == 'Cancel':
-        start_handler(message)
-    elif selected_option.lower() == 'another request':
+    if selected_option == 'cancel':
+        bot.send_message(user_id, "How can I help you?", reply_markup=markup)
+    elif selected_option == 'another request':
         bot.send_message(user_id, "Write your request:")
         bot.register_next_step_handler(message, process_another_request)
     else:
@@ -145,7 +145,7 @@ def process_selected_request_or_another(message):
 
 def process_another_request(message):
     user_id = message.from_user.id
-    if message.text.lower() == 'Cancel':
+    if message.text.strip().lower() == 'cancel':
         start_handler(message)
     else:
         question = message.text
@@ -154,18 +154,27 @@ def process_another_request(message):
 
 def process_email(message, request):
     user_id = message.from_user.id
-    email = message.text
+    email = message.text.strip()
+    if email.lower() == 'cancel':
+        start_handler(message)
+        return
     bot.send_message(user_id, "Please enter your phone number:")
     bot.register_next_step_handler(message, process_phone, request=request, email=email)
 
+
 def process_phone(message, request, email):
     user_id = message.from_user.id
-    phone = message.text
+    phone = message.text.strip()
+    if phone.lower() == 'cancel':
+        start_handler(message)
+        return
     send_email_to_dean_office(request, email, phone)
-    bot.send_message(user_id, f"Your request '{request}' \nwith email '{email}' \nand phone number '{phone}' \nhas been successfully sent!")
+    bot.send_message(user_id, f"Your request '{request}' with email '{email}' and phone number '{phone}' has been successfully sent!")
     start_handler(message)
 
-
+@bot.message_handler(func=lambda message: message.text.lower() == 'cancel')
+def cancel_handler(message):
+    start_handler(message)
 # Function for sending an email to the dean's office
 def send_email_to_dean_office(question, email, phone):
     sender_email = "tetenkinevgenij@gmail.com"
@@ -175,7 +184,7 @@ def send_email_to_dean_office(question, email, phone):
     body = f"Request: {question}\nEmail: {email}\nPhone number: {phone}"
 
     #get pass (feauture)
-    sender_password = "password"
+    sender_password = "hopa xszm xtmq ravh"
 
     # Sending an email using a password
     yagmail.register(sender_email, sender_password)
@@ -188,7 +197,7 @@ def send_email_to_dean_office(question, email, phone):
 
 
 
-@bot.message_handler(func=lambda message: message.text.lower() == 'show FaQ')
+@bot.message_handler(func=lambda message: message.text == 'Show QA')
 def show_QA_handler(message):
     user_id = message.from_user.id
     try:
