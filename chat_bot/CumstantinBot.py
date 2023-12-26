@@ -53,7 +53,7 @@ cursor.execute('''
 
 conn.commit()
 
-# creating FR
+# creating FaR
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS FrequentlyAskedRequests (
         request_id INTEGER PRIMARY KEY,
