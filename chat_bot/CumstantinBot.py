@@ -68,7 +68,7 @@ with sqlite3.connect('faqBot.db', check_same_thread=False) as conn:
     conn.commit()
 
 # Bot token
-TOKEN = '6159843684:AAFyjpwCQNbhrgKh58L5wg0nqv0FNCAdANc'
+TOKEN = 'token'
 bot = telebot.TeleBot(TOKEN)
 
 # Reply keyboard markup
@@ -184,14 +184,14 @@ def cancel_handler(message):
 
 # Function to send an email to the dean's office
 def send_email_to_dean_office(question, email, phone):
-    sender_email = "tetenkinevgenij@gmail.com"
-    dean_office_email = "telegrambricks@gmail.com"
+    sender_email = "bot email"
+    dean_office_email = "dekanat email"
 
     subject = "New request for documents"
     body = f"Request: {question}\nEmail: {email}\nPhone number: {phone}"
 
     # get pass (feature)
-    sender_password = "hopa xszm xtmq ravh"
+    sender_password = "password"
 
     # Sending an email using a password
     yagmail.register(sender_email, sender_password)
