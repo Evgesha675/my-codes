@@ -5,7 +5,7 @@ import io
 import pandas as pd
 import openpyxl
 import yagmail
-import smtplib
+import smtplib as SMTP
 import os
 import base64
 import keyring
@@ -15,7 +15,7 @@ import time
 # Configuring logging
 logging.basicConfig(filename='bot.log', level=logging.ERROR)
 
-# Connecting to SQLite database
+# Connectin`g to SQLite database
 with sqlite3.connect('faqBot.db', check_same_thread=False) as conn:
     cursor = conn.cursor()
 
@@ -449,8 +449,9 @@ def update_database_from_excel(file_data):
 
         print("The database has been successfully updated.")
     except Exception as e:
-        print(f"An error occurred when updating the database from an Excel file: {e}")
         # Error handling, e.g., notifying the administrator of an incorrect file format
+        print(f"An error occurred when updating the database from an Excel file: {e}")
+       
 
 # Start the bot
 while True:
@@ -458,4 +459,4 @@ while True:
         bot.polling(none_stop=True)
     except Exception as e:
         logging.error(f"Polling error: {e}")
-        time.sleep(15)
+        time.sleep(10)
