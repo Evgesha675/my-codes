@@ -67,7 +67,7 @@ with sqlite3.connect('faqBot.db', check_same_thread=False) as conn:
     # Committing changes to the database
     conn.commit()
 
-# Bot token
+# Bot token``
 TOKEN = 'token'
 bot = telebot.TeleBot(TOKEN)
 
