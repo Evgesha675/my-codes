@@ -1,9 +1,16 @@
 body {
     margin: 0;
+    padding: 0;
 }
 
-header {
-    margin-bottom: 30px;
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    padding: 0;
+    margin: 0;
 }
 
 .container {
@@ -16,8 +23,17 @@ header {
     gap: 20px;
 }
 
+.header-btn {
+    margin-bottom: 30px;
+}
+
 .main-field {
     margin-bottom: 30px;
+}
+
+.image {
+    width: 50px;
+    height: 50px;
 }
 
 .main-puzzle {
@@ -49,15 +65,49 @@ header {
 }
 
 .item-puz {
-    border: 2px solid #ce2020;
+    border: 2px solid #000;
     border-radius: 2px;
     height: 54px;
     width: 54px;
     margin-bottom: 10px;
-    transition: transform .2s;
+    transition: all .2s;
 }
 
-.item-tile:hover,
 .item-puz:hover {
-    transform: scale(1.2);
+    scale: 1.2;
 }
+
+.select-puz {
+    border: 2px solid red;
+    border-radius: 2px;
+    height: 54px;
+    width: 54px;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.complete-tile {
+    border: 2px solid green;
+    pointer-events: none;
+    cursor: default;
+}
+
+.block-puz {
+    border: 2px solid green;
+    pointer-events: none;
+    cursor: default;
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+}
+#soundButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  #soundButton:hover {
+    background-color: #2980b9;
+  }
