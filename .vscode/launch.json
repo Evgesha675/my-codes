@@ -1,7 +1,20 @@
 {
   "version": "0.2.0",
   "configurations": [
-    
+    {
+      "type": "java",
+      "name": "jv",
+      "request": "launch",
+      "mainClass": "jv",
+      "projectName": "my-codes_44afe129"
+    },
+    {
+      "type": "java",
+      "name": "SubnetMaskCalculator",
+      "request": "launch",
+      "mainClass": "SubnetMaskCalculator",
+      "projectName": "my-codes_44afe129"
+    },
     {
       "type": "java",
       "name": "BracketValidation",

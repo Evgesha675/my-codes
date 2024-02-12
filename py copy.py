@@ -1,81 +1,26 @@
-import telebot
-from telebot import types
+import json
 
-# Инициализация бота
-bot=telebot.TeleBot('')
+with open('tst.json', 'r') as file:
+    data = json.load(file)
 
-# Создаем клавиатуру с 10 кнопками
-markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-button_stats = []
-# Создаем список кнопок
-button1 = types.KeyboardButton("Кнопка 1")
-button2 = types.KeyboardButton("Кнопка 2")
-button3 = types.KeyboardButton("Кнопка 3")
-button4 = types.KeyboardButton("Кнопка 4")
-button5 = types.KeyboardButton("Кнопка 5")
-button6 = types.KeyboardButton("Кнопка 6")
-button7 = types.KeyboardButton("Кнопка 7")
-button8 = types.KeyboardButton("Кнопка 8")
-button9 = types.KeyboardButton("Кнопка 9")
-restart_bot = types.KeyboardButton("Старт")
+cards_with_id = data['cards']
 
-# Добавляем кнопки к клавиатуре
-markup.add(button1, button2, button3, button4, button5, button6, button7, button8, button9, restart_bot)
+def third_card(a, b, c):
+    return [p1 if p1 == p2 else 6 - p1 - p2 for p1, p2, p3 in zip(a, b, c)]
 
-# Обработчик команды /start
-@bot.message_handler(commands=['start'])
-def start(message):
-    # Отправляем сообщение с клавиатурой
-    bot.send_message(message.chat.id, "Выберите действие:", reply_markup=markup)
+cards = []
 
-# Обработчики кнопок
-@bot.message_handler(func=lambda message: message.text == "Кнопка 1")
-def button1_handler(message):
-    # Здесь можно добавить логику для кнопки 1, например, отправку документа
-    bot.send_document(message.chat.id, open("C:/Users/Vitaliy/Desktop/png и нужные файлы/1988776886_preview_Слой 1.png", "rb"))
+for card in cards_with_id:
+    new_card = {key: value for key, value in card.items() if key != 'id'}
+    cards.append(new_card)
 
+third_cards = []
 
-@bot.message_handler(func=lambda message: message.text == "Кнопка 2")
-def button2_handler(message):
-    # Здесь можно добавить логику для кнопки 2
-     bot.send_document(message.chat.id, open("C:/Users/Vitaliy/Desktop/png и нужные файлы/1988776886_preview_Слой 2.png", "rb"))
-@bot.message_handler(func=lambda message: message.text == "Кнопка 3")
-def button3_handler(message):
-    # Отправка аудиофайла MP3
-    audio_path = "C:/Users/Vitaliy/Desktop/png и нужные файлы/Camellia - Light It Up (mp3cut.net).mp3"
-    with open(audio_path, "rb") as audio:
-        bot.send_audio(message.chat.id, audio)
-# Обработчик кнопки "Перезапустить бота"
-@bot.message_handler(func=lambda message: message.text == "Старт")
-def restart_handler(message):
-    start(message) 
+for i in range(len(cards) - 2):
+    for j in range(i + 1, len(cards) - 1):
+        for k in range(j + 1, len(cards)):
+            third_cards.append(third_card(cards[i].values(), cards[j].values(), cards[k].values()))
 
-
-# Функция для записи события нажатия кнопки в массив
-def record_button_stats(button_text):
-    button_stats.append(button_text)
-    print("Записано нажатие кнопки:", button_text)
-# Обработчик команды /stats
-@bot.message_handler(commands=['stats'])
-def show_button_stats(message):
-    # Преобразуем массив button_stats в строку для вывода
-    stats_str = "\n".join(button_stats)
-    
-    if stats_str:
-        bot.send_message(message.chat.id, "Статистика нажатия кнопок:\n" + stats_str)
-    else:
-        bot.send_message(message.chat.id, "Статистика нажатия кнопок пуста.")
-
-# Обработчик нажатия кнопки для вывода статистики
-@bot.message_handler(func=lambda message: message.text == "Показать статистику")
-def show_stats_button_handler(message):
-    show_button_stats(message)  # Вызываем обработчик команды /stats
-
-
-
-
-
-    
-# Запуск бота
-if __name__ == "__main__":
-    bot.polling(none_stop=True)
+print(*cards)
+for card in third_cards:
+    print(card)
