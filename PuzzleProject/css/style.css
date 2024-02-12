@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+.container {
+    width: 1200px;
+}
+
+.d-flex {
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.main-field {
+    margin-bottom: 30px;
+}
+
+.main-puzzle {
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.picture-flex {
+    flex-direction: column;
+}
+
+.main-picture {
+    border: 2px solid #ce2020;
+    border-radius: 2px;
+}
+
+.item-tile {
+    border: 2px solid #ce2020;
+    border-radius: 2px;
+    height: 54px;
+    width: 54px;
+    margin-bottom: 10px;
+    transition: all .2s;
+}
+
+.item-tile:hover {
+    scale: 1.2;
+}
+
+.item-puz {
+    border: 2px solid #ce2020;
+    border-radius: 2px;
+    height: 54px;
+    width: 54px;
+    margin-bottom: 10px;
+    transition: transform .2s;
+}
+
+.item-tile:hover,
+.item-puz:hover {
+    transform: scale(1.2);
+}

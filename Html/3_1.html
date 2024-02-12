@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарь</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 50px auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    function createCalendar(year, month) {
+        const currentDate = new Date(year, month, 1);
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth();
+
+        const monthNames = [
+            "Январь", "Февраль", "Март",
+            "Апрель", "Май", "Июнь",
+            "Июль", "Август", "Сентябрь",
+            "Октябрь", "Ноябрь", "Декабрь"
+        ];
+
+        const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
+        const firstDayOfMonth = new Date(currentYear, currentMonth, 0).getDay();
+
+        const table = document.createElement('table');
+        const thead = document.createElement('thead');
+        const tbody = document.createElement('tbody');
+
+        // Создаем заголовок таблицы с названиями месяца и дней недели
+        const monthHeader = document.createElement('th');
+        monthHeader.setAttribute('colspan', '7');
+        monthHeader.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+        thead.appendChild(monthHeader);
+
+        const daysOfWeek = [ "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
+        const daysRow = document.createElement('tr');
+        daysOfWeek.forEach(day => {
+            const th = document.createElement('th');
+            th.textContent = day;
+            daysRow.appendChild(th);
+        });
+        thead.appendChild(daysRow);
+        table.appendChild(thead);
+
+        // Создаем ячейки для каждого дня месяца
+        let dayCount = 1;
+        for (let i = 0; i < 6; i++) {
+            const row = document.createElement('tr');
+            for (let j = 0; j < 7; j++) {
+                const td = document.createElement('td');
+                if (i === 0 && j < firstDayOfMonth) {
+                    // Пустые ячейки до начала месяца
+                    td.textContent = '';
+                } else if (dayCount <= daysInMonth) {
+                    // Заполняем ячейки днями месяца
+                    td.textContent = dayCount;
+                    dayCount++;
+                }
+                row.appendChild(td);
+            }
+            tbody.appendChild(row);
+        }
+        table.appendChild(tbody);
+
+        document.body.innerHTML = ''; // Очищаем body перед добавлением нового календаря
+        document.body.appendChild(createNavigation(currentYear, currentMonth));
+        document.body.appendChild(table);
+    }
+
+    // Функция для создания кнопок "Предыдущий месяц" и "Следующий месяц"
+    function createNavigation(year, month) {
+        const navigationDiv = document.createElement('div');
+        navigationDiv.classList.add('navigation');
+
+        const prevButton = document.createElement('button');
+        prevButton.textContent = 'Предыдущий месяц';
+        prevButton.onclick = function () {
+            const newDate = new Date(year, month - 1);
+            createCalendar(newDate.getFullYear(), newDate.getMonth());
+        };
+
+        const nextButton = document.createElement('button');
+        nextButton.textContent = 'Следующий месяц';
+        nextButton.onclick = function () {
+            const newDate = new Date(year, month + 1);
+            createCalendar(newDate.getFullYear(), newDate.getMonth());
+        };
+
+        navigationDiv.appendChild(prevButton);
+        navigationDiv.appendChild(nextButton);
+
+        return navigationDiv;
+    }
+
+    // Вызываем функцию создания календаря при загрузке страницы
+    window.onload = function () {
+        const currentDate = new Date();
+        createCalendar(currentDate.getFullYear(), currentDate.getMonth());
+    };
+</script>
+
+</body>
+</html>
