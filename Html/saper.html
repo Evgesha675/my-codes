@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сапёр</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #minesweeper {
+      display: grid;
+      grid-template-columns: repeat(12, 30px);
+      gap: 1px;
+    }
+
+    .cell {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #999;
+      text-align: center;
+      line-height: 30px;
+      cursor: pointer;
+    }
+
+    .highlight {
+      background-color: #e6e6e6;
+    }
+
+    .opened {
+      background-color: #ddd;
+    }
+
+    .mined {
+      background-color: #ff9999;
+    }
+
+    .flagged {
+      background-color: #66ccff;
+    }
+  </style>
+</head>
+<body>
+  <div id="minesweeper"></div>
+
+  <script>
+    const rows = 12;
+    const cols = 12;
+    const minesCount = 20;
+    let minesweeperGrid = [];
+    let openedCells = 0;
+
+    function initializeGrid() {
+      for (let i = 0; i < rows; i++) {
+        minesweeperGrid[i] = [];
+        for (let j = 0; j < cols; j++) {
+          minesweeperGrid[i][j] = {
+            isMine: false,
+            isOpened: false,
+            isFlagged: false,
+            neighbors: 0
+          };
+        }
+      }
+
+      // Randomly place mines
+      let minesPlaced = 0;
+      while (minesPlaced < minesCount) {
+        const randomRow = Math.floor(Math.random() * rows);
+        const randomCol = Math.floor(Math.random() * cols);
+        if (!minesweeperGrid[randomRow][randomCol].isMine) {
+          minesweeperGrid[randomRow][randomCol].isMine = true;
+          minesPlaced++;
+        }
+      }
+
+      // Calculate number of mine neighbors for each cell
+      for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+          if (!minesweeperGrid[i][j].isMine) {
+            minesweeperGrid[i][j].neighbors = countMineNeighbors(i, j);
+          }
+        }
+      }
+    }
+
+    function countMineNeighbors(row, col) {
+      let count = 0;
+      for (let i = row - 1; i <= row + 1; i++) {
+        for (let j = col - 1; j <= col + 1; j++) {
+          if (i >= 0 && i < rows && j >= 0 && j < cols && minesweeperGrid[i][j].isMine) {
+            count++;
+          }
+        }
+      }
+      return count;
+    }
+
+    function renderGrid() {
+      const minesweeper = document.getElementById('minesweeper');
+      minesweeper.innerHTML = '';
+
+      for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          cell.dataset.row = i;
+          cell.dataset.col = j;
+
+          cell.addEventListener('click', handleCellClick);
+          cell.addEventListener('contextmenu', handleCellRightClick);
+
+          minesweeper.appendChild(cell);
+        }
+      }
+    }
+
+    function handleCellClick(event) {
+      const row = parseInt(event.target.dataset.row);
+      const col = parseInt(event.target.dataset.col);
+
+      if (!minesweeperGrid[row][col].isFlagged) {
+        openCell(row, col);
+      }
+    }
+
+    function handleCellRightClick(event) {
+      event.preventDefault();
+      const row = parseInt(event.target.dataset.row);
+      const col = parseInt(event.target.dataset.col);
+
+      toggleFlag(row, col);
+    }
+
+    function openCell(row, col) {
+      if (minesweeperGrid[row][col].isOpened) return;
+
+      minesweeperGrid[row][col].isOpened = true;
+      openedCells++;
+
+      const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+      cell.classList.add('opened');
+
+      if (minesweeperGrid[row][col].isMine) {
+        cell.classList.add('mined');
+        alert('Game Over! You hit a mine.');
+        resetGame();
+      } else {
+        if (minesweeperGrid[row][col].neighbors === 0) {
+          // Open neighboring cells if current cell has no mine neighbors
+          for (let i = row - 1; i <= row + 1; i++) {
+            for (let j = col - 1; j <= col + 1; j++) {
+              if (i >= 0 && i < rows && j >= 0 && j < cols) {
+                openCell(i, j);
+              }
+            }
+          }
+        }
+
+        if (openedCells === rows * cols - minesCount) {
+          alert('Congratulations! You won!');
+          resetGame();
+        }
+      }
+    }
+
+    function toggleFlag(row, col) {
+      const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+
+      if (!minesweeperGrid[row][col].isOpened) {
+        minesweeperGrid[row][col].isFlagged = !minesweeperGrid[row][col].isFlagged;
+        cell.classList.toggle('flagged', minesweeperGrid[row][col].isFlagged);
+      }
+    }
+
+    function resetGame() {
+      minesweeperGrid = [];
+      openedCells = 0;
+      initializeGrid();
+      renderGrid();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeGrid();
+      renderGrid();
+
+      document.addEventListener('keydown', (event) => {
+        const activeCell = document.querySelector('.highlight');
+        let currentRow = activeCell ? parseInt(activeCell.dataset.row) : 0;
+        let currentCol = activeCell ? parseInt(activeCell.dataset.col) : 0;
+
+        switch (event.key) {
+          case 'ArrowUp':
+            currentRow = Math.max(currentRow - 1, 0);
+            break;
+          case 'ArrowDown':
+            currentRow = Math.min(currentRow + 1, rows - 1);
+            break;
+          case 'ArrowLeft':
+            currentCol = Math.max(currentCol - 1, 0);
+            break;
+          case 'ArrowRight':
+            currentCol = Math.min(currentCol + 1, cols - 1);
+            break;
+          case 'Enter':
+          case ' ':
+            handleCellClick({
+              target: document.querySelector(`[data-row="${currentRow}"][data-col="${currentCol}"]`)
+            });
+            break;
+          case 'Control':
+            event.preventDefault();
+            toggleFlag(currentRow, currentCol);
+            break;
+        }
+
+        const newActiveCell = document.querySelector(`[data-row="${currentRow}"][data-col="${currentCol}"]`);
+        if (activeCell) activeCell.classList.remove('highlight');
+        newActiveCell.classList.add('highlight');
+      });
+    });
+  </script>
+</body>
+</html>

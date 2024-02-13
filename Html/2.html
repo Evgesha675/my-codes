@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Задачи</title>
+</head>
+<body>
+
+<script>
+    // Функция для получения предметов из localStorage
+    function getSubjectsFromLocalStorage() {
+        const initialSubjects = ["Математика", "Физика"];
+        const subjectsString = localStorage.getItem('subjects');
+        return subjectsString ? subjectsString.split(',') : initialSubjects;
+    }
+
+    // Функция для обновления предметов в localStorage
+    function updateSubjectsInLocalStorage(subjects) {
+        localStorage.setItem('subjects', subjects.join(','));
+    }
+
+    const subjects = {
+        list: getSubjectsFromLocalStorage(),
+        addSubject: function () {
+            const newSubject = prompt("Введите предмет для добавления:");
+            if (newSubject) {
+                if (!this.list.includes(newSubject)) {
+                    this.list.push(newSubject);
+                    updateSubjectsInLocalStorage(this.list);
+                    console.log(`Предмет "${newSubject}" добавлен.`);
+                } else {
+                    console.log(`Предмет "${newSubject}" уже существует.`);
+                }
+            }
+        },
+        removeSubject: function () {
+            const subjectToDelete = prompt(`Выберите предмет для удаления:\n${this.list.join(', ')}`);
+            if (subjectToDelete) {
+                const index = this.list.indexOf(subjectToDelete);
+                if (index !== -1) {
+                    this.list.splice(index, 1);
+                    updateSubjectsInLocalStorage(this.list);
+                    console.log(`Предмет "${subjectToDelete}" удален.`);
+                } else {
+                    console.log(`Предмет "${subjectToDelete}" не найден.`);
+                }
+            }
+        }
+    };
+
+    const tasks = {
+        // 2.1
+        task1: function () {
+            function convertToCamelCase(str) {
+                const words = str.split('-');
+                for (let i = 1; i < words.length; i++) {
+                    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+                }
+                return words.join('');
+            }
+
+            const result = convertToCamelCase("background-color");
+            console.log(result);
+        },
+
+        // 2.2
+        task2: function () {
+            const originalArray = [9, 8, 7, 6, 5, 4, 3, 2, 1];
+
+            // Метод 1
+            const copy1 = [...originalArray];
+            const reversedCopy1 = copy1.reverse();
+
+            // Метод 2
+            const copy2 = originalArray.slice().reverse();
+
+            console.log(originalArray);
+            console.log(reversedCopy1);
+            console.log(copy2);
+        },
+
+        // 2.3
+        task3: function () {
+            const translations = {
+                "hello": "привет",
+                "world": "мир",
+                "good": "хорошо",
+                "bye": "пока"
+            };
+
+            function translateString(str) {
+                const words = str.split(' ');
+                return words.map(word => translations[word] || word).join(' ');
+            }
+
+            const translated = translateString("hello world");
+            console.log(translated);
+        },
+
+        // 2.4
+        task4: function () {
+            const daysOfWeek = {
+                1: "Понедельник",
+                2: "Вторник",
+                3: "Среда",
+                4: "Четверг",
+                5: "Пятница",
+                6: "Суббота",
+                7: "Воскресенье"
+            };
+
+            const currentDayNumber = new Date().getDay();
+            const currentDay = daysOfWeek[currentDayNumber];
+            console.log(currentDay);
+        },
+
+        // 2.5 (Обновлено для интерактивности)
+        task5: function () {
+            const personnel = {
+                position1: "Андрюха",
+                position2: "Иван",
+                position3: "Наташка"
+            };
+
+            const staff2 = { ...personnel };
+            staff2.position1 = prompt("Введите новое имя для position1:");
+            staff2.position2 = prompt("Введите новое имя для position2:");
+
+            console.clear();
+            console.log("Исходный объект personnel:");
+            console.log(personnel);
+            console.log("\nОбновленный объект staff2:");
+            console.log(staff2);
+        },
+
+        // 2.6
+        task6: function () {
+            const dayAbbreviations = "Пн,Вт,Ср,Чт,Пт,Сб,Вс".split(',');
+
+            const daysOfWeek = {
+                1: "Понедельник",
+                2: "Вторник",
+                3: "Среда",
+                4: "Четверг",
+                5: "Пятница",
+                6: "Суббота",
+                7: "Воскресенье"
+            };
+
+            daysOfWeek.abbreviations = dayAbbreviations;
+
+            daysOfWeek.displayAbbreviation = function () {
+                const currentDayNumber = new Date().getDay();
+                const currentAbbreviation = this.abbreviations[currentDayNumber - 1];
+                console.log(currentAbbreviation);
+            };
+
+            daysOfWeek.displayAbbreviation();
+        },
+
+        // 2.7 (Обновлено для интерактивности и localStorage)
+        task7: function () {
+            const action = prompt("Выберите действие:\n1. Добавить предмет\n2. Удалить предмет");
+            if (action === "1") {
+                subjects.addSubject();
+            } else if (action === "2") {
+                subjects.removeSubject();
+            } else {
+                console.log("Некорректное действие.");
+            }
+
+            console.log(`Текущий список предметов: ${subjects.list}`);
+        },
+    };
+
+    // Функция для выполнения задачи в зависимости от нажатой кнопки
+    function executeTask(taskNumber) {
+        const taskFunction = tasks[`task${taskNumber}`];
+        if (taskFunction) {
+            console.clear();
+            console.log(`Выполнение задачи ${taskNumber}:`);
+            taskFunction();
+        } else {
+            console.error(`Задача ${taskNumber} не найдена.`);
+        }
+    }
+</script>
+
+<!-- Кнопки для каждой задачи -->
+<button onclick="executeTask(1)">Задача 1</button>
+<button onclick="executeTask(2)">Задача 2</button>
+<button onclick="executeTask(3)">Задача 3</button>
+<button onclick="executeTask(4)">Задача 4</button>
+<button onclick="executeTask(5)">Задача 5</button>
+<button onclick="executeTask(6)">Задача 6</button>
+<button onclick="executeTask(7)">Задача 7</button>
+
+</body>
+</html>

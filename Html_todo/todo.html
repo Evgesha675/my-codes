@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Простой список задач</title>
+    <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+
+<div id="app">
+    <div id="task-list">
+        <h1>Список задач</h1>
+        <button onclick="createTask()">Создать задачу</button>
+        <ul id="tasks"></ul>
+    </div>
+    <div id="task-modal" class="hidden">
+        <div id="task-form">
+            <h2>Форма задачи</h2>
+            <label for="taskTitle">Заголовок:</label>
+            <input type="text" id="taskTitle">
+            <label for="taskDescription">Описание:</label>
+            <textarea id="taskDescription"></textarea>
+            <button onclick="saveTask()">Сохранить</button>
+            <button onclick="closeTaskModal()">Закрыть</button>
+        </div>
+    </div>
+</div>
+
+<script src="todo.js"></script>
+</body>
+</html>

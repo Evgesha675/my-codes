@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конструктор визиток</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #constructor-container {
+            width: 40%;
+            padding: 20px;
+        }
+
+        #preview-container {
+            width: 50%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        #business-card {
+            width: 600px;
+            height: 400px;
+            border: 1px solid #000;
+            position: relative;
+        }
+
+        .text-field {
+            margin-bottom: 10px;
+        }
+
+        .phone-fields {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .phone-field {
+            display: flex;
+            margin-bottom: 5px;
+        }
+
+        .add-phone-button {
+            margin-top: 10px;
+            cursor: pointer;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div id="constructor-container">
+    <h2>Конструктор визиток</h2>
+    <div class="text-field">
+        <label for="organization">Наименование организации:</label>
+        <input type="text" id="organization">
+    </div>
+    <div class="text-field">
+        <label for="fullName">ФИО:</label>
+        <input type="text" id="fullName">
+    </div>
+    <div class="text-field">
+        <label for="position">Должность:</label>
+        <input type="text" id="position">
+    </div>
+    <div class="phone-fields">
+        <div class="phone-field">
+            <label for="phone1">Телефон:</label>
+            <input type="tel" id="phone1">
+        </div>
+        <div class="phone-field">
+            <label for="phone2">Дополнительный телефон:</label>
+            <input type="tel" id="phone2">
+        </div>
+        <div class="add-phone-button" onclick="addPhoneField()">+ Добавить телефон</div>
+    </div>
+    <div class="text-field">
+        <label for="email">Email:</label>
+        <input type="email" id="email">
+    </div>
+    <div class="text-field">
+        <label for="address">Адрес:</label>
+        <input type="text" id="address">
+    </div>
+    <div class="text-field">
+        <label for="fontSize">Размер шрифта (px):</label>
+        <input type="number" id="fontSize" min="1" value="16">
+    </div>
+    <div class="text-field">
+        <label for="fontWeight">Жирность шрифта:</label>
+        <select id="fontWeight">
+            <option value="normal">Обычный</option>
+            <option value="bold">Жирный</option>
+        </select>
+    </div>
+    <div class="text-field">
+        <label for="fontColor">Цвет шрифта:</label>
+        <input type="color" id="fontColor" value="#000000">
+    </div>
+    <div class="text-field">
+        <label for="bgColor">Цвет фона:</label>
+        <input type="color" id="bgColor" value="#ffffff">
+    </div>
+    <button onclick="updatePreview()">Обновить визитку</button>
+</div>
+
+<div id="preview-container">
+    <h2>Предпросмотр визитки</h2>
+    <div id="business-card"></div>
+</div>
+
+<script src="vizitka.js"></script>
+</body>
+</html>

@@ -1,11 +1,118 @@
 <!DOCTYPE html>
-<html>
-<script>
-    let a = 12;
-    for (i=0; i<10; i++){
-        print(i);
-    }
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математические функции</title>
+    <script>
+        function displayPrimes() {
+            const n = parseInt(document.getElementById('inputN').value);
+            let primes = [];
+            let currentNumber = 2;
 
-</script>
+            while (primes.length < n) {
+                if (isPrime(currentNumber)) {
+                    primes.push(currentNumber);
+                }
+                currentNumber++;
+            }
+            document.getElementById('result1').innerText = `Простые числа: ${primes.join(', ')}`;
+        }
+        
+        function isPrime(num) {
+            for (let i = 2; i < Math.sqrt(num) + 1; i++) {
+                if (num % i === 0) {
+                    return false;
+                }
+            }
+            return num > 1;
+        }
 
+        function findDivisors() {
+            const n = parseInt(document.getElementById('inputN').value);
+            let divisors = [];
+
+            for (let i = 1; i <= n; i++) {
+                if (n % i === 0) {
+                    divisors.push(i);
+                }
+            }
+
+            document.getElementById('result2').innerText = `Делители числа ${n}: ${divisors.join(', ')}`;
+        }
+
+        function checkPrime() {
+            const num = parseInt(document.getElementById('inputN').value);
+            const isPrimeResult = isPrime(num);
+
+            document.getElementById('result3').innerText = `Число ${num} ${isPrimeResult ? 'простое' : 'не простое'}`;
+        }
+
+        function checkFibonacci() {
+            const num = parseInt(document.getElementById('inputN').value);
+            const isFibonacci = isPerfectSquare(5 * num * num + 4) || isPerfectSquare(5 * num * num - 4);
+
+            document.getElementById('result4').innerText = `Число ${num} ${isFibonacci ? 'является' : 'не является'} числом Фибоначчи`;
+        }
+
+        function isPerfectSquare(n) {
+            const sqrt = Math.sqrt(n);
+            return sqrt === Math.floor(sqrt);
+        }
+
+        function findDivisibleByDigitSum() {
+            const n = parseInt(document.getElementById('inputN').value);
+            const m = parseInt(document.getElementById('inputM').value);
+            let result = [];
+
+            for (let i = n; i <= m; i++) {
+                const digitSum = getDigitSum(i);
+                if (i % digitSum === 0) {
+                    result.push(i);
+                }
+            }
+
+            document.getElementById('result5').innerText = `Числа от ${n} до ${m}, которые делятся на сумму своих цифр: ${result.join(', ')}`;
+        }
+
+        function getDigitSum(num) {
+            return num.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+        }
+
+        function findDivisorsOfN() {
+            const n = parseInt(document.getElementById('inputN').value);
+            let divisors = [];
+
+            for (let i = 1; i <= n; i++) {
+                if (n % i === 0) {
+                    divisors.push(i);
+                }
+            }
+
+            document.getElementById('result6').innerText = `Делители числа ${n}: ${divisors.join(', ')}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Математические функции</h1>
+
+    <label for="inputN">Введите N:</label>
+    <input type="number" id="inputN">
+
+    <label for="inputM">Введите M:</label>
+    <input type="number" id="inputM">
+    <br>
+    <button onclick="displayPrimes()">1. Показать первые N простых чисел</button>
+    <div id="result1"></div>
+    <button onclick="findDivisors()">2. Найти все делители числа N</button>
+    <div id="result2"></div>
+    <button onclick="checkPrime()">3. Проверить, является ли число простым</button>
+    <div id="result3"></div>
+    <button onclick="checkFibonacci()">4. Проверить, является ли число числом Фибоначчи</button>
+    <div id="result4"></div>
+    <button onclick="findDivisibleByDigitSum()">5. Найти числа от N до M, которые делятся на сумму своих цифр</button>
+    <div id="result5"></div>
+    <button onclick="findDivisorsOfN()">6. Найти все делители числа N</button>
+    <div id="result6"></div>
+</body>
 </html>
