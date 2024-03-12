@@ -4,11 +4,9 @@
     ""
   ],
 
-  
-    "java.project.referencedLibraries": [
-      "c:\\lib\\jaybird-5.0.1.java11.jar"
-    ],
- 
+  "java.project.referencedLibraries": [
+    "c:\\lib\\jaybird-5.0.1.java11.jar"
+  ],
 
   "C_Cpp_Runner.cCompilerPath": "C:/D-drive-31515/MinGW/mingw64/bin/gcc.exe",
   "C_Cpp_Runner.cppCompilerPath": "C:/D-drive-31515/MinGW/mingw64/bin/g++.exe",
@@ -43,6 +41,25 @@
     "*.tcc": "cpp",
     "iostream": "cpp"
   },
-  "java.debug.settings.onBuildFailureProceed": true
+  "java.debug.settings.onBuildFailureProceed": true,
+
+  "editor.tokenColorCustomizations": {
+    "comments": "#f5c906", 
+    "textMateRules": [
+      {
+        "scope": "comment.block",
+        "settings": {
+          "foreground": "#4ef35edd"
+        }
+      },
+      {
+        "scope": "comment.documentation", 
+        "settings": {
+          "foreground": "#0000FF"
+        }
+      }
+    ]
+  }
 }
+
 

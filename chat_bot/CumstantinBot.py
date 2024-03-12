@@ -68,7 +68,7 @@ with sqlite3.connect('faqBot.db', check_same_thread=False) as conn:
     conn.commit()
 
 # Bot token``
-TOKEN = 'token'
+TOKEN = '6378551854:AAGBtcq3xKjIduZym771lElsImrlJ08L64c'
 bot = telebot.TeleBot(TOKEN)
 
 # Reply keyboard markup
@@ -231,6 +231,11 @@ def show_QA_handler(message):
                 formatted_data += f"\n\n• {question_text}\n  - {answer_text}"
 
             bot.send_message(user_id, formatted_data, parse_mode="Markdown")
+            
+            # Command handler for canceling the current operation
+            @bot.message_handler(func=lambda message: message.text.lower() == 'cancel')
+            def cancel_handler(message):
+                start_handler(message)
     else:
         try:
             # Fetching distinct topics from the database
@@ -247,6 +252,7 @@ def show_QA_handler(message):
         except Exception as e:
             print(e)
             bot.send_message(user_id, "An error occurred. Please try again.")
+
 # Function to process user's topic choice
 def process_user_topic_choice(message):
     user_id = message.from_user.id
