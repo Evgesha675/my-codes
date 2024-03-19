@@ -1,8 +1,9 @@
 <?php
+
 // Базовый класс для персонажей
 class Character {
     protected $name;
-    private $health;
+    protected $health;
 
     public function __construct($name, $health) {
         $this->name = $name;
@@ -17,45 +18,17 @@ class Character {
         return $this->health;
     }
 
-    public function setHealth($health) {
-        $this->health = $health;
-    }
-
     // Метод для атаки
     public function attack($target) {
         $damage = mt_rand(5, 20); // Случайное значение урона
-        $target->takeDamage($damage);
         echo "{$this->name} атаковал {$target->getName()} и нанес {$damage} урона. \n";
+        $target->takeDamage($damage);
     }
 
     // Метод для получения урона
-    protected function takeDamage($damage) {
+    public function takeDamage($damage) {
         $this->health -= $damage;
         echo "{$this->name} получил {$damage} урона. \n";
-    }
-}
-
-// Унаследованный класс для роботов
-class Robot extends Character implements Fighter {
-    private $energy;
-
-    public function __construct($name, $health, $energy) {
-        parent::__construct($name, $health);
-        $this->energy = $energy;
-    }
-
-    public function getEnergy() {
-        return $this->energy;
-    }
-
-    public function useEnergy() {
-        $this->energy -= 10;
-    }
-
-    // Реализация метода из интерфейса
-    public function fight() {
-        $this->useEnergy();
-        return mt_rand(10, 30); // Случайное значение урона во время сражения
     }
 }
 
@@ -80,6 +53,40 @@ class Player extends Character {
     }
 }
 
+// Класс для роботов
+class Robot extends Character implements Fighter {
+    private $energy;
+
+    public function __construct($name, $health, $energy) {
+        parent::__construct($name, $health);
+        $this->energy = $energy;
+    }
+
+    public function getEnergy() {
+        return $this->energy;
+    }
+
+    // Реализация метода атаки
+    public function attack($target) {
+        $damage = $this->fight(); // Вызываем метод fight() для нанесения урона и использования энергии
+        echo "{$this->name} атаковал {$target->getName()} и нанес {$damage} урона. \n";
+        $target->takeDamage($damage);
+    }
+
+    // Реализация метода из интерфейса
+    public function fight() {
+        $damage = mt_rand(10, 30); // Случайное значение урона во время сражения
+        $this->useEnergy();
+        return $damage;
+    }
+
+    // Метод для использования энергии
+    private function useEnergy() {
+        $use_energy = mt_rand(10,30); // Случайное значение потери энергии для робота
+        $this->energy -= $use_energy;
+    }
+}
+
 // Создание экземпляров классов и их использование
 $player = new Player("Игрок", 100);
 $robot = new Robot("Робот", 150, 50);
@@ -91,3 +98,5 @@ $player->useSpecialAbility();
 
 echo "{$player->getName()} имеет {$player->getHealth()} здоровья.\n";
 echo "{$robot->getName()} имеет {$robot->getHealth()} здоровья и {$robot->getEnergy()} енергии.\n";
+
+?>
