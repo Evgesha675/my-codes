@@ -1,40 +1,23 @@
+import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
-from aiogram.types import ParseMode
-from aiogram import executor
+from aiogram.filters.command import Command
 
-# Замените 'YOUR_BOT_TOKEN' на токен вашего бота
-API_TOKEN = '6378551854:AAGBtcq3xKjIduZym771lElsImrlJ08L64c'
-
-# Уровень логирования
+# Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
+# Объект бота
+bot = Bot(token="6378551854:AAGBtcq3xKjIduZym771lElsImrlJ08L64c")
+# Диспетчер
+dp = Dispatcher()
 
-# Инициализация бота и диспетчера
-bot = Bot(token=API_TOKEN)
-dp = Dispatcher(bot)
+# Хэндлер на команду /start
+@dp.message(Command("start"))
+async def cmd_start(message: types.Message):
+    await message.answer("Hello!")
 
-# Хендлер на команду /start
-@dp.message_handler(commands=['start'])
-async def send_welcome(message: types.Message):
-    await message.reply("Привет! Я бот, который готов общаться с вами.")
+# Запуск процесса поллинга новых апдейтов
+async def main():
+    await dp.start_polling(bot)
 
-# Функция для старта бота
-async def on_startup(dp):
-    logging.info("Бот запущен!")
-
-# Функция для остановки бота
-async def on_shutdown(dp):
-    logging.info("Бот остановлен!")
-
-if __name__ == '__main__':
-    from aiogram import executor
-    from aiogram.types import BotCommand
-
-    # Добавление команды /start
-    bot_commands = [
-        BotCommand(command="/start", description="Начать общение с ботом"),
-    ]
-    dp.bot.set_my_commands(bot_commands)
-
-    # Запуск бота
-    executor.start_polling(dp, on_startup=on_startup, on_shutdown=on_shutdown)
+if __name__ == "__main__":
+    asyncio.run(main())
