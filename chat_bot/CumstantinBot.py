@@ -1,6 +1,6 @@
 # Importing necessary libraries
 import sqlite3
-import telebot
+import telebot 
 import io
 import pandas as pd
 import openpyxl
@@ -68,7 +68,7 @@ with sqlite3.connect('faqBot.db', check_same_thread=False) as conn:
     conn.commit()
 
 # Bot token``
-TOKEN = 'token'
+TOKEN = '6378551854:AAGBtcq3xKjIduZym771lElsImrlJ08L64c'
 bot = telebot.TeleBot(TOKEN)
 
 # Reply keyboard markup
@@ -184,14 +184,14 @@ def cancel_handler(message):
 
 # Function to send an email to the dean's office
 def send_email_to_dean_office(question, email, phone):
-    sender_email = "bot email"
-    dean_office_email = "dekanat email"
+    sender_email = "tetenkinevgenij@gmail.com"
+    dean_office_email = "anatolevicanatolij560@gmail.com"
 
     subject = "New request for documents"
     body = f"Request: {question}\nEmail: {email}\nPhone number: {phone}"
 
     # get pass (feature)
-    sender_password = "password"
+    sender_password = "hopa xszm xtmq ravh"
 
     # Sending an email using a password
     yagmail.register(sender_email, sender_password)
