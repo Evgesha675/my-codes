@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой календарь</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Мой календарь</h1>
+        <div class="new-task">
+            <h2>Новая задача</h2>
+            <form>
+                <label for="tema">Тема:</label>
+                <input type="text" id="tema" name="tema">
+
+                <label for="tip">Тип:</label>
+                <select id="tip" name="tip">
+                    <option>Встреча</option>
+                    <option>Дело</option>
+                    <option>Звонок</option>
+                </select>
+
+                <label for="mesto">Место:</label>
+                <input type="text" id="mesto" name="mesto">
+
+                <label for="date">Дата и время:</label>
+                <input type="date" id="date" name="date">
+                <input type="time" id="time" name="time">
+
+                <label for="dlin">Длительность:</label>
+                <select id="dlin" name="dlin">
+                    <option>1 час</option>
+                    <option>30 минут</option>
+                    <option>2 часа</option>
+                </select>
+
+                <label for="comment">Комментарий:</label>
+                <textarea id="comment" name="comment"></textarea>
+
+                <button type="submit">Добавить</button>
+            </form>
+        </div>
+
+        <div class="task-list">
+            <h2>Список задач</h2>
+            <div class="filter">
+                <button>Текущие задачи</button>
+                <input type="date" id="filter-date" name="filter-date">
+                <button>сегодня</button>
+                <button>завтра</button>
+                <button>на эту неделю</button>
+                <button>на след. неделю</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Тип</th>
+                        <th>Задача</th>
+                        <th>Место</th>
+                        <th>Дата и время</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Дело</td>
+                        <td><a href="#">Начать задачу "Мой календарь"</a></td>
+                        <td>-</td>
+                        <td>01/12/2014 12:00</td>
+                    </tr>
+                    <tr>
+                        <td>Встреча</td>
+                        <td><a href="#">Встретиться с Президентом, обсудить вопросы образования</a></td>
+                        <td>Кремль</td>
+                        <td>01/12/2014 14:00</td>
+                    </tr>
+                    <tr>
+                        <td>Звонок</td>
+                        <td><a href="#">Позвонить друзьям на счет похода в Винкель в пятницу</a></td>
+                        <td>-</td>
+                        <td>01/12/2014 23:00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "HtmlTextEditor",
+      "request": "launch",
+      "mainClass": "java_course.lab13.HtmlTextEditor",
+      "projectName": "my-codes_44afe129"
+    },
+    {
+      "type": "java",
       "name": "jv",
       "request": "launch",
       "mainClass": "jv",
