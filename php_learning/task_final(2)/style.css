@@ -156,3 +156,26 @@ h1, h2 {
 .task-list button:hover {
     background-color: #696969;
 }
+
+.submit-button {
+    grid-column: 1 / 3;  /* Расположить кнопку на всю ширину формы */
+    justify-self: center;  /* Выровнять кнопку по центру */
+    width: 200px;  /* Фиксированный размер кнопки */
+    padding: 10px;
+    background-color: #808080;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #696969;
+}
+
+button[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 16px;
+}
