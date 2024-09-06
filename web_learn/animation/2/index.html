@@ -2,26 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Первая программа на js</title>
-    <style>
-        #Button{
-            background: green;
-            color: yellow;
-        }
-    </style>
-    
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <button id="Button">НАЖМИ НА МЕНЯ</button>
-
-    <script>
-        let i = 10;
-        alert(i)
-
-        document.getElementById()
-
-    </script>
-    
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+            <button class="btn">/</button>
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn">*</button>
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn">-</button>
+            <button class="btn">0</button>
+            <button class="btn">.</button>
+            <button class="btn">+</button>
+            <button class="btn">=</button>
+            <button class="btn" id="clear">C</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
