@@ -1,22 +1,11 @@
 <?php
-include 'db.php'; // Подключаемся к базе данных
+include 'db.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $_POST['id'];
+$id = $_POST['id'];
 
-    // Подготовка SQL запроса
-    $sql = "DELETE FROM Events WHERE id = ?";
-    $stmt = $pdo->prepare($sql);
+$sql = "DELETE FROM Events WHERE id = ?";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$id]);
 
-    // Выполнение запроса
-    try {
-        $stmt->execute([$id]);
-        header("Location: index.php"); // Перенаправляем обратно на главную страницу
-        exit;
-    } catch (PDOException $e) {
-        echo "Ошибка удаления события: " . $e->getMessage();
-    }
-} else {
-    echo "Неверный метод запроса.";
-}
+header("Location: index.php");
 ?>

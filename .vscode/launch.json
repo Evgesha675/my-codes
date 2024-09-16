@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "мусорка.Main",
+      "projectName": "my-codes_8feebf9d"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "java_course.Matrix.Main",
+      "projectName": "my-codes_8feebf9d"
+    },
+    {
+      "type": "java",
       "name": "HtmlTextEditor",
       "request": "launch",
       "mainClass": "java_course.lab13.HtmlTextEditor",
